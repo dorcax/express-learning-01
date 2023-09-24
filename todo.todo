@@ -1,0 +1,25 @@
+1. - Functional, OOP -> Functional
+2. - ORMs, ODMs -> ORMs / ODMs (Prisma)
+3. - NOSQL, SQL -> SQL - POSTGRES
+4. - Debugging and thought process
+
+BLOG Website
+1. Express
+2. POSTGRES
+3. Prisma
+
+Features
+1. All Blogs must be connected to a user
+2. USER can perform CRUD operations on blog
+3. User can have draft blogs that are not published
+4. Fetch only published blogs to the frontend
+5. User can recieve Likes and Comments on Blogs
+6. One user cannot like or comment on a blog more than once
+
+TODOS
+1. Server Setup - done
+2. Database Setup - done
+
+NOTES
+1. req.body (takes data passed to the body of the endpoint)
+2. req.params (takes parameters passed to the endpoint)
