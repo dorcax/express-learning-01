@@ -19,7 +19,11 @@ Features
 TODOS
 1. Server Setup - done
 2. Database Setup - done
+3. User registration and login done
+4.Jwt added 
+5.published blog done
 
 NOTES
 1. req.body (takes data passed to the body of the endpoint)
 2. req.params (takes parameters passed to the endpoint)
+3.to generate jwt secret =require("crypto").randomBytes(64).toString('hex')
