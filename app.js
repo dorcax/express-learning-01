@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const UserAuth =require("./Router/UserRouter")
 const blogRoute =require("./Router/blogRouter")
 const Auth =require("./middleware/Auth")
+const uploadImage =require("./Router/uploadRouter")
+const fileUpload =require("express-fileupload")
 dotenv.config();
 
 app.use(bodyParser.json());
@@ -28,15 +30,16 @@ app.use(bodyParser.json());
 
 // and delete user--------------------------------
 // 10.edit comment------------
-
-
+app.use(fileUpload())
+app.use(express.static("./Image"))
 app.use("/user",UserAuth)
 app.use("/blog",Auth,blogRoute)
-app.post("/upload",(req,res)=>{
-  console.log(req.file)
-res.send("wow")
-})
+// app.post("/upload",(req,res)=>{
+//   console.log(req.file)
+// res.send("wow")
+// })
 
+app.use("/uploads",uploadImage)
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });

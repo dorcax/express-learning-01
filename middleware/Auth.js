@@ -14,7 +14,7 @@ const Authentication =(req,res,next)=>{
 const verified =jwt.verify(token,process.env.JWT_SECRET)
 console.log(verified)
 req.User=verified
-next()
+ next()
 
 }
 

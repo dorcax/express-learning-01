@@ -1,15 +1,21 @@
 const db = require("../../config/db");
+const path =require("path")
 
 
 
 // an endpoint to create blog
 module.exports.createBlog= async (req, res) => {
+  const { userId } = req.params;
     const { title, content } = req.body;
-    const { userId } = req.params;
+    const image =req.files.image
+    console.log(req.files)
+    // mmm ,,,mm
+    // const imagepath  =path.join(__dirname,"../../Image/uploads/" +`${image.name}`)
     const newBlog = await db.blog.create({
       data: {
         title,
         content,
+        image:`uploads/${image.name}`,
         user: {
           connect: {
             id: +userId,
@@ -17,11 +23,13 @@ module.exports.createBlog= async (req, res) => {
         },
       },
     });
-    res.status(200).json(newBlog);
-  };
-module.exports.uploadImage =async(req,res)=>{
+    
+  await image.mv("../uploads/"+`${image.name}`)
+   return res.status(200).json(newBlog);
+  }
+  module.exports.uploadImage =async(req,res)=>{
   // console.log(req)
-  // res.status(200).json("image upload successfully")
+  // res.status(200).jmso mn("image upload successfully")
 res.send("wow")
 }
   // an endpoint to get a blog
