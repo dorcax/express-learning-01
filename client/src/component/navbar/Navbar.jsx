@@ -1,64 +1,161 @@
-import React, { useState } from 'react'
-import Dropdown from './dropdown/Dropdown'
-import Dropdown2 from './dropdown/Dropdown2';
+import React, { useContext, useState } from "react";
+import Dropdown from "./dropdown/Dropdown";
+import Dropdown2 from "./dropdown/Dropdown2";
 import { category, blog, more } from "../../data/category";
-import Dropdown3 from './dropdown/Dropdown3';
+import Dropdown3 from "./dropdown/Dropdown3";
+import Darkmode from "./darkmode";
+import { DarkmodeContext } from "./themeContext";
+import { Link } from "react-router-dom";
+
+
 const Navbar = () => {
-  const[dropdown,setdropdown] =useState(false)
-  const[dropdown1,setdropdown1]=useState(false)
-  const[dropdown2,setdropdown2]=useState(false)
-  const handleClick =()=>{
-    setdropdown(!dropdown)
-  }
+  const { theme, toggleTheme } = useContext(DarkmodeContext);
+  const [dropdown, setdropdown] = useState(false);
+  const [dropdown1, setdropdown1] = useState(false);
+  const [dropdown2, setdropdown2] = useState(false);
+  const handleClick = () => {
+    setdropdown(!dropdown);
+  };
+
+  // hamburger
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const setToggle = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   return (
-    <div className='bg-white h-24 shadow-md py-6 font-["Poppins", sans-serif] '>
-         <nav className='flex  items-center justify-around'>
-            <div className='flex items-center'>
-                <h3 className='text-blue-400 capitalize text-3xl px-2  font-bold'>  <span className='text-2xl text-center px-2'><i class="fas fa-edit"></i></span> design blog</h3>
-            </div>
-          <div className='flex items-center'>
-            <ul className='flex items-center '>
-                <li className='px-4 capitalize text-xl px-4 font-light hover:font-normal'>home</li>
-                <li className='px-4 capitalize text-xl px-4 font-light hover:font-normal ' 
-                
-
-                onClick={handleClick}
-                >categories <i className="fa-solid fa-chevron-down text-base "></i>
-              {dropdown &&  <Dropdown  /> } 
-                </li>
-                <li className='px-4 capitalize text-xl px-4 font-light hover:font-normal' onClick={()=>setdropdown1(!dropdown1)} >blog <i className="fa-solid fa-chevron-down text-base"></i>
-             
-              {dropdown1 && <Dropdown2 />}  
-      
-                </li>
-                <li className='px-4 capitalize text-xl px-4 font-light hover:font-normal'>more <i class="fa-solid fa-chevron-down text-base" onClick={()=>setdropdown2(!dropdown2)}></i>
-               
-              
-               {dropdown2 &&<Dropdown3 />} 
-                </li>
-                <li className='px-4 capitalize text-xl px-4 font-light hover:font-normal'>contact</li>
-                <span className='px-4 text-lg '><i class="fa-solid fa-magnifying-glass"></i></span>
-            </ul>
-      
-            <div className='flex  items-center px-4'>
-              <div className='w-14 h-14 border-blue-400 border-2 border-solid rounded-full text-center mx-6'></div>
+    <div
+      className={
+        theme === "light"
+          ? 'bg-white  w-full  shadow-md py-6 font-["Poppins", sans-serif]  '
+          : 'bg-[#001840]  w-full  shadow-md py-6 font-["Poppins", sans-serif] text-white '
+      }
+    >
+      <nav className="flex  items-center justify-around  ">
+        <div className="flex items-center">
+          <h3
+            className={
+              theme === "light"
+                ? "text-cyan-600 capitalize text-3xl px-2  font-bold"
+                : "text-cyan-600 capitalize text-3xl px-2  font-bold"
+            }
+          >
+            <span className="text-2xl text-center px-2">
+              <i class="fas fa-edit"></i>
+            </span>
+            design blog
+          </h3>
+        </div>
+        <div className="flex items-center hidden md:flex">
+          <ul className="flex items-center">
+            <li className="px-4 capitalize text-lg px-4 font-light hover:font-normal">
+              <Link to="/">
+              home</Link>
+            </li>
+            <li
+              className="px-4 capitalize text-lg px-4 font-light hover:font-normal "
+              onClick={handleClick}
+            >
+              categories <i className="fa-solid fa-chevron-down text-base "></i>
+              {dropdown && <Dropdown />}
+            </li>
+            <li
+              className="px-4 capitalize text-lg px-4 font-light hover:font-normal"
+              onClick={() => setdropdown1(!dropdown1)}
+            >
+              blog <i className="fa-solid fa-chevron-down text-base"></i>
+              {dropdown1 && <Dropdown2 />}
+            </li>
+            <li
+              className="px-4 capitalize text-lg px-4 font-light hover:font-normal"
+              onClick={() => setdropdown2(!dropdown2)}
+            >
+              more <i class="fa-solid fa-chevron-down text-base"></i>
+              {dropdown2 && <Dropdown3 />}
+            </li>
+            <li className="px-4 capitalize text-lg px-4 font-light hover:font-normal">
+              contact
+            </li>
+            <span className="px-4 text-lg ">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </span>
+          </ul>
+          <div className="flex  items-center ">
+            <div className="w-14 h-14 border-blue-400 border-2 border-solid rounded-full text-center mx-3"></div>
 
             <div className="capitalize ">
-            <h3 className='text-xl font-bold '>dorcas ibrahim</h3>
-            <p className='text-base font-normal'>blog writer</p>
-          </div>
-          </div>
+              <h3 className="text-xl font-bold ">dorcas ibrahim</h3>
+              <p className="text-base font-normal">blog writer</p>
             </div>
-            
-          
-        </nav> 
+            <Darkmode />
+          </div>
+        </div>
 
-       
-      
-      
+        {/* hamburger on small screen */}
+
+        <div
+          className="md:hidden z-10 flex item-center justify-center"
+          onClick={setToggle}
+        >
+          {isMenuOpen ? (
+            <i className="fas fa-times text-white text-2xl "></i>
+          ) : (
+            <i className="fas fa-bars text-lg "></i>
+          )}
+        </div>
+        <div
+          className={`${
+            isMenuOpen
+              ? "opacity-100 transform translate-x-0   "
+              : "opacity-0  transform -translate-y-full  "
+          }transition-transform absolute top-0 left-0  w-full h-screen bg-[#001840]/80 flex flex-col justify-center items-center text-white gap-6`}
+        >
+          <ul className="flex   flex-col  gap-6 items-start">
+            <li className="px-4 capitalize text-xl  font-light hover:font-normal ">
+              <Link to="/">home</Link>
+            </li>
+            <li
+              className="px-4 capitalize text-xl font-light hover:font-normal "
+              onClick={handleClick}
+            >
+              categories <i className="fa-solid fa-chevron-down text-base "></i>
+              {dropdown && <Dropdown />}
+            </li>
+            <li
+              className="px-4 capitalize text-xl  font-light hover:font-normal"
+              onClick={() => setdropdown1(!dropdown1)}
+            >
+              blog <i className="fa-solid fa-chevron-down text-base"></i>
+              {dropdown1 && <Dropdown2 />}
+            </li>
+            <li
+              className="px-4 capitalize text-xl font-light hover:font-normal"
+              onClick={() => setdropdown2(!dropdown2)}
+            >
+              more <i class="fa-solid fa-chevron-down text-base"></i>
+              {dropdown2 && <Dropdown3 />}
+            </li>
+            <li className="px-4 capitalize text-xl  font-light hover:font-normal">
+              contact
+            </li>
+            <span className="px-4 text-xl ">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </span>
+          </ul>
+          <div className="flex items-start">
+            <div className="w-14 h-14 border-blue-400 border-2 border-solid rounded-full text-center mx-3"></div>
+
+            <div className="capitalize text-center">
+              <h3 className="text-xl font-bold ">dorcas ibrahim</h3>
+              <p className="text-base font-normal">blog writer</p>
+            </div>
+          </div>
+        </div>
+   
+      </nav>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
