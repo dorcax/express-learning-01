@@ -47,7 +47,7 @@ const Navbar = () => {
         </h3>
       </div>
       <nav className="  ">
-        <ul className="flex items-center md: hidden">
+        <ul className=" hidden md:flex items-center">
           <li className="px-4 capitalize text-lg px-4 font-light hover:font-normal">
             <Link to="/">home</Link>
           </li>
@@ -81,7 +81,7 @@ const Navbar = () => {
         </ul>
         {/* </div> */}
       </nav>
-      <div className="flex  items-center  md: hidden">
+      <div className=" hidden md:flex  items-center  ">
         <div className="w-14 h-14 border-blue-400 border-2 border-solid rounded-full text-center mx-3"></div>
 
         <div className="capitalize ">
@@ -90,7 +90,7 @@ const Navbar = () => {
         </div>
       </div>
       {/* hamburger on small screen */}
-      <div className="flex items-center">
+      <div className=" flex items-center">
         <Darkmode />
         <div
           className="md:hidden z-10  flex  flex-col items-center "
@@ -98,7 +98,7 @@ const Navbar = () => {
         >
           {isMenuOpen ? (
             <span className="flex items-center ">
-              <i className="fas fa-times text-white text-2xl  "></i>
+              <i className="fas fa-times text-white text-2xl"></i>
             </span>
           ) : (
             <i className="fas fa-bars text-2xl  "></i>
@@ -111,6 +111,7 @@ const Navbar = () => {
               : "opacity-0  transform -translate-y-full  "
           }transition-transform absolute top-0 left-0  w-full h-screen bg-[#002130]/80 flex flex-col justify-center items-start text-white gap-6 `}
         >
+          <nav className="">
           <ul className="flex   flex-col gap-6 ">
             <li className="px-4 capitalize text-xl  font-light hover:font-normal ">
               <Link to="/">home</Link>
@@ -143,6 +144,8 @@ const Navbar = () => {
               <i class="fa-solid fa-magnifying-glass"></i>
             </span>
           </ul>
+          </nav>
+       
           <div className="flex items-start">
             <div className="w-14 h-14 border-blue-400 border-2 border-solid rounded-full text-center mx-3"></div>
 
@@ -153,7 +156,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-    </div>
+     </div>
 
     // </div>
   );
