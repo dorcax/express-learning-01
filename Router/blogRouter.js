@@ -2,9 +2,10 @@ const express=require("express")
 const router =express.Router()
 const blogRouter =require("../controller/Blog/blog")
 const {Authentication,Authrestrict} =require("../middleware/Auth")
+const upload =require("../multer.js")
 
 
-router.post("/",Authentication,Authrestrict("ADMIN"),blogRouter.createBlog)
+router.post("/",Authentication,Authrestrict("ADMIN"),upload.single("imageUrl"),blogRouter.createBlog)
 
 router.route("/")
       .get(blogRouter.getBlog)

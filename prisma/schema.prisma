@@ -32,7 +32,7 @@ model Blog {
   userId      Int
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
-
+   imageUrl    String
 
   category     Category @default(LIFESTYLE)
   like        Like[]

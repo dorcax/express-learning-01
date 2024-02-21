@@ -1,7 +1,15 @@
-const Joi =require("@hapi/joi")
+const Joi =require("joi")
 
 
-
+const options = {
+	stripUnknown: true,
+	abortEarly: false,
+	errors: {
+		wrap: {
+			label: ""
+		}
+	}
+};
 
 const validateSignup = (user)=>{
    const schema =  Joi.object({
@@ -11,7 +19,7 @@ const validateSignup = (user)=>{
     
 
 })
-return schema.validate(user)
+return schema.validate(user,options)
 }
 
 
@@ -20,16 +28,16 @@ const validateSignIn =(user)=>{
         email:Joi.string().email().required(),
         password:Joi.string().required()
     })
-    return schema.validate(user)
+    return schema.validate(user,options)
 }
 
 const validateBlog =(user)=>{
     const schema =Joi.object({
       content:Joi.string().required(),
       title:Joi.string().required(),
-      isPublised :Joi.boolean().required()
+      isPublished :Joi.boolean().required()
     })
-    return schema.validate(userr)
+    return schema.validate(user,options)
 }
 
 module.exports ={validateSignIn,validateSignup,validateBlog}

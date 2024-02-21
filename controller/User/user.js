@@ -34,12 +34,13 @@ module.exports.createUser = asyncWrapper(async (req, res, next) => {
 // user endpoint to login
 module.exports.loginUser = asyncWrapper(async (req, res, next) => {
   // try {
-  const { email, password } = req.body;
+
   // validate using joi
-  const { error } = validateSignIn(req.body);
+  const { error,value } = validateSignIn(req.body);
   if (error) {
     return next(customApiError(error.message, 400));
   }
+  const { email, password } = value
   // find user email
   const User = await db.user.findUnique({
     where: { email: email },
@@ -49,8 +50,8 @@ module.exports.loginUser = asyncWrapper(async (req, res, next) => {
     return next(customApiError("user does not exist", 404));
   }
   // verify the password
-  const IsMatch = await argon2.verify(User.password, password);
-
+  const IsMatch = await argon2.verify(User.password,password);
+console.log(IsMatch)
   if (!IsMatch) {
     return next(customApiError("Invalid username or password", 401));
   }

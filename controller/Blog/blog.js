@@ -1,24 +1,33 @@
 const db = require("../../config/db");
 const path = require("path");
+const cloudinary = require("../../utils/cloudinary")
 const asyncWrapper = require("../../middleware/asyncWrapper");
 const {
   createCustomError,
   customApiError,
 } = require("../../middleware/customApiError");
 const { validateBlog } = require("../../validation/userValidation");
+const imageUpload = require("./image");
 
 // an endpoint to create blog superadmin
-module.exports.createBlog = asyncWrapper(async (req, res) => {
-  const { title, content, isPublished } = req.body;
+module.exports.createBlog = async (req, res,next) => {
+  
   // validate blog
-  const { error } = validateBlog(req.body);
+  const { error,value } = validateBlog(req.body);
   if (error) {
-    return next(customApiError(error.message, 400));
+    return next(createCustomError(error.message, 400));
   }
   // create blog
-  const newBlog = await db.blog.create({
+  // const imageUrl2 = await imageUpload(imageUrl)
+  const { title, content, isPublished,imageUrl
+  } = value;
+  const result =await cloudinary.uploader.upload(req.file.path)
+    
+  const imageUrl2 =result.secure_url
+    const newBlog = await db.blog.create({
     data: {
-      ...req.body,
+      ...value,
+      imageUrl:imageUrl2,
       user: {
         connect: {
           id: req.User.id,
@@ -27,7 +36,7 @@ module.exports.createBlog = asyncWrapper(async (req, res) => {
     },
   });
   return res.status(200).json(newBlog);
-});
+};
 
 // an endpoint to get a blog for user
 module.exports.getBlog = asyncWrapper(async (req, res) => {
