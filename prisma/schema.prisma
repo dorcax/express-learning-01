@@ -17,6 +17,7 @@ model User {
   password  String
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
+  role       Role     @default(USER)
   blog      Blog[]
   like      Like[]
   comment   Comment[]
@@ -31,7 +32,9 @@ model Blog {
   userId      Int
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
-  image        String
+
+
+  category     Category @default(LIFESTYLE)
   like        Like[]
   comment     Comment[]
 }
@@ -54,3 +57,18 @@ model Comment {
   userId    Int
   createdAt DateTime @default(now())
 }
+
+
+enum Role {
+  ADMIN
+  USER
+}
+
+enum Category {
+  LIFESTYLE 
+  CULTURE 
+  STARTUP 
+  TRENDING
+
+}
+

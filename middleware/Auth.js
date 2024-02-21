@@ -18,4 +18,15 @@ req.User=verified
 
 }
 
-module.exports=Authentication
+
+const Authrestrict =(role)=>{
+   return(req,res,next)=>{
+      if(req.User.role !==role){
+       res.send("you are not permitted to access this route")
+      }
+      next()
+   }
+}
+
+module.exports={Authentication,Authrestrict
+}
