@@ -2,7 +2,9 @@ import React from 'react'
 
 const Single = () => {
   return (
-    <div>Single</div>
+    <div>
+      <div className='p-24 font-["Poppins", sans-serif]'></div>
+    </div>
   )
 }
 

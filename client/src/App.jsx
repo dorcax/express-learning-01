@@ -6,6 +6,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
+  Routes,
   RouterProvider,
 } from "react-router-dom";
 import MainNav from "./component/navbar/MainNav";
@@ -19,6 +20,9 @@ import Author from "./component/more/Author";
 import SearchResult from "./component/more/SearchResult";
 import Error from "./component/more/Error";
 import SignUp from "./component/Sign/SignUp";
+import Login from "./component/Sign/Login";
+import { Contact } from "./component/contact/Contact";
+import LoginForm from "./component/Sign/Login2";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -27,16 +31,19 @@ const App = () => {
       <Route path="/" element={<MainNav/>}>
         <Route index element={<Body />} />
         <Route path="sign" element={<SignUp />} />
+        <Route path="login" element={<Login/>}/>
         <Route path="category/lifestyle" element={<Lifestyle/>}/>    
         <Route path="category/culture" element={<Culture/>}/>
-        <Route path="category/startup" element={<Startup/>}/>
+        <Route path="category/IT" element={<Startup/>}/>
         <Route path="blog/featured" element={<Featured/>}/>
         <Route path="blog/single" element={<Single/>}/>
         <Route path="blog/video" element={<Video/>}/>
         <Route path="more/author" element={<Author/>}/>
         <Route path="more/searchResult" element={<SearchResult/>}/>
-        <Route path="*" element={<Error/>}/>
         <Route path="blog/lifestyle" element={<Lifestyle/>}/>
+        <Route path="/logins" element={<LoginForm/>}/>
+        <Route path="/contact" element={<Contact/>}/>
+        <Route path="*" element={<Error/>}/>
 
          
       </Route>
@@ -45,9 +52,10 @@ const App = () => {
   );
   return (
     <div>
-    
+        
       <ThemeContext>
-      
+   
+        
         <RouterProvider router={router} />
       </ThemeContext>
 

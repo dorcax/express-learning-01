@@ -1,5 +1,5 @@
 const category=[
-   {path:"/category/lifestyle", name:"lifestyle posts"},{path:"/category/culture",name:"culture posts"},{path:"/category/startup",name:"startup posts"}
+   {path:"/category/lifestyle", name:"lifestyle posts"},{path:"/category/culture",name:"culture posts"},{path:"/category/IT",name:"IT posts"}
 ]
 
 

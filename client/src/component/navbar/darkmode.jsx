@@ -6,13 +6,13 @@ const Darkmode = () => {
 
   return (
     <div>
-      <div className=" px-4" onClick={toggleTheme}>
+      <div className=" md: px-4" onClick={toggleTheme}>
         <span className="flex justify-center items-center   text-xl">
           {theme === "light" ? (
             <i class="fa-solid fa-moon "></i>
           ) : (
             <i class="fa-solid fa-sun"></i>
-          )}{" "}
+          )}
         </span>
       </div>
     </div>
