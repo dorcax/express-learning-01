@@ -1,8 +1,9 @@
 const db = require("../../config/db");
 const argon2 = require("argon2");
 const jwt = require("jsonwebtoken");
+const cookie =require("cookie-parser")
 const asyncWrapper = require("../../middleware/asyncWrapper");
-const { customApiError } = require("../../middleware/customApiError");
+const { customApiError, createCustomError } = require("../../middleware/customApiError");
 const {
   validateSignup,
   validateSignIn,
@@ -13,12 +14,12 @@ module.exports.createUser = asyncWrapper(async (req, res, next) => {
   // validate using joi
   const { error } = validateSignup(req.body);
   if (error) {
-    return next(customApiError(error.message, 400));
+    return next(createCustomError(error.message, 400));
   }
   //  check if user already exist
   const existingUser = await db.user.findUnique({ where: { email } });
   if (existingUser) {
-    return next(customApiError("User already exists", 409));
+    return next(createCustomError("User already exists", 409));
   }
   const hashedPassword = await argon2.hash(req.body.password);
   console.log(name, email, password);
@@ -38,7 +39,8 @@ module.exports.loginUser = asyncWrapper(async (req, res, next) => {
   // validate using joi
   const { error,value } = validateSignIn(req.body);
   if (error) {
-    return next(customApiError(error.message, 400));
+    return next(createCustomError
+      (error.message, 400));
   }
   const { email, password } = value
   // find user email
@@ -47,13 +49,13 @@ module.exports.loginUser = asyncWrapper(async (req, res, next) => {
   });
   console.log(User);
   if (!User) {
-    return next(customApiError("user does not exist", 404));
+    return next(createCustomError("user does not exist", 404));
   }
   // verify the password
   const IsMatch = await argon2.verify(User.password,password);
 console.log(IsMatch)
   if (!IsMatch) {
-    return next(customApiError("Invalid username or password", 401));
+    return next(createCustomError("Invalid username or password", 401));
   }
   // create token
   const createToken = jwt.sign(
@@ -63,7 +65,13 @@ console.log(IsMatch)
       expiresIn: "1h",
     }
   );
-  return res.status(200).json({ User, createToken });
+  console.log(createToken
+    )
+   res.cookie("token",createToken,{
+    httpOnly:true,
+    maxAge:1000*60*60*24
+  })
+  return res.status(200).json({user:User });
 });
 
 // an endpoint to deleteUser
@@ -73,7 +81,7 @@ module.exports.deleteUser = asyncWrapper(async (req, res, next) => {
   });
   if (!deleteuser) {
     return next(
-      customApiError("no user is found with that particular id", 404)
+      createCustomError("no user is found with that particular id", 404)
     );
   }
 

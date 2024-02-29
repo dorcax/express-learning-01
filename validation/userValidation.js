@@ -35,7 +35,8 @@ const validateBlog =(user)=>{
     const schema =Joi.object({
       content:Joi.string().required(),
       title:Joi.string().required(),
-      isPublished :Joi.boolean().required()
+      isPublished :Joi.boolean().required(),
+      category:Joi.string().required()
     })
     return schema.validate(user,options)
 }

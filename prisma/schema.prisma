@@ -35,8 +35,8 @@ model Blog {
    imageUrl    String
 
   category     Category @default(LIFESTYLE)
-  like        Like[]
-  comment     Comment[]
+  like         Like[]
+  comment      Comment[]
 }
 
 model Like {
@@ -67,7 +67,7 @@ enum Role {
 enum Category {
   LIFESTYLE 
   CULTURE 
-  STARTUP 
+  IT
   TRENDING
 
 }

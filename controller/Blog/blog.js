@@ -19,8 +19,8 @@ module.exports.createBlog = async (req, res,next) => {
   }
   // create blog
   // const imageUrl2 = await imageUpload(imageUrl)
-  const { title, content, isPublished,imageUrl
-  } = value;
+  const { title, content, isPublished,imageUrl,category} = value;
+
   const result =await cloudinary.uploader.upload(req.file.path)
     
   const imageUrl2 =result.secure_url
@@ -35,21 +35,33 @@ module.exports.createBlog = async (req, res,next) => {
       },
     },
   });
-  return res.status(200).json(newBlog);
+  return res.status(200).json({newBlog:newBlog});
 };
 
 // an endpoint to get a blog for user
 module.exports.getBlog = asyncWrapper(async (req, res) => {
   const blogs = await db.blog.findMany({
+    
+    where:{userId:5},
     include: {
-      user: true,
       like: {
-        include: {
-          user: true,
-        },
+        select: {
+          user: true
+        }
       },
-      comment: true,
-    },
+      user:true
+    }
+    // select: {
+    //   content:true,
+    //   imageUrl:true,
+    //   isPublished:true,
+    //   like: {
+    //     select: {
+    //       user: true
+    //     },
+    //   },
+    //   comment: true,
+    // },
   });
 
   res.status(200).json(blogs);
@@ -105,6 +117,9 @@ module.exports.getPublishedBlog = asyncWrapper(async (req, res, next) => {
     where: {
       AND: [{ id: +blogId }, { userId: req.User.id }, { isPublished: true }],
     },
+    include:{
+      user:true
+    }
   });
   if (!getblog) {
     return next(createCustomError("no user with that id", 404));
