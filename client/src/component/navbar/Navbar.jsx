@@ -6,8 +6,10 @@ import Dropdown3 from "./dropdown/Dropdown3";
 import Darkmode from "./darkmode";
 import { DarkmodeContext } from "./themeContext";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Sign/Loginhandlers";
 
 const Navbar = () => {
+  const{login,logout,IsAuthenticated}=useContext(AuthContext)
   const { theme, toggleTheme } = useContext(DarkmodeContext);
   const [dropdown, setdropdown] = useState(false);
   const [dropdown1, setdropdown1] = useState(false);
@@ -79,10 +81,11 @@ const Navbar = () => {
             <i class="fa-solid fa-magnifying-glass"></i>
           </span>
         </ul>
-        {/* </div> */}
+
       </nav>
       <div className=" hidden  flex items-center md:flex  items-center  ">
-       <button type="button" className="border border-solid border-[#4579A0] px-4 py-2 rounded-md capitalize text-md hover:bg-[#4579A0] hover:text-[#fff] "><Link to="/sign">sign up</Link></button>
+        {IsAuthenticated ?<button onClick={logout}>logout</button>:<button type="button" className="border border-solid border-[#4579A0] px-4 py-2 rounded-md capitalize text-md hover:bg-[#4579A0] hover:text-[#fff] transition ease-out duration-500  " ><Link to="/login">signin</Link></button>}
+       
        
         <Darkmode />
       </div>

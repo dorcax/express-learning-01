@@ -1,7 +1,9 @@
 import { useState ,useEffect} from "react"
 import axios from "axios"
 const UseFetch =(url)=>{
-    const[data,setData] =useState(null)
+
+    const [comment,setComment] =useState("")
+    const[message,setMessage] =useState(null)
     const[loading,setLoading]=useState(false)
     const [error,setError]=useState(null)
 
@@ -9,10 +11,15 @@ const UseFetch =(url)=>{
 useEffect(()=>{
    const fetch =async()=>{
     try {
-        const result =await axios.get(url,{
+        const res =await axios.post(url,{
             withCredentials:true
-        })
-         setData(result)
+        },
+        {
+            comment:comment
+        }
+        )
+         setMessage(result.data)
+         setComment("")
     } catch (error) {
         console.log(error.message)
         setError(error.message)
@@ -20,7 +27,7 @@ useEffect(()=>{
    }
    fetch()
 },[url])
-    return {data,loading,error}
+    return {message,comment,loading,error}
 }
 
 

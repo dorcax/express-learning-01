@@ -1,122 +1,7 @@
-// import axios from "axios";
-// // import { valid } from 'joi'
-// import React, { useReducer, useState } from "react";
-// const initialState = {
-//   email: "",
-//   password: ""
-// };
-// const reducer = (state, action) => {
-//   switch (action.type) {
-//     case "Set_email":
-//       return { 
-//         ...state, email: action.payload };
-//     case "Set_password":
-//       return { 
-//         ...state, password: action.payload };
-
-//     case "RESET":
-//       return action.initialState;
-//     default:
-//       return state;
-//   }
-// };
-// const Login = () => {
-
-//   const [state, dispatch] = useReducer(reducer, initialState);
-//   const [error, setError] = useState([]);
-//   // handle change of input
-//   // const handleChange = (e) => {
-//   //   const { name, value } = e.target;
-//   //   dispatch({ type: `Set_${name}`, payload: value });
-//   // };
-//   const handleEmailChange = (e) => {
-//     dispatch({ type: "Set_email", payload: e.target.value });
-//   };
-
-//   const handlePasswordChange = (e) => {
-//     dispatch({ type: "Set_password", payload: e.target.value });
-//   };
-
-//   // validate input
-
-
-//   const ValidateForm = () => {
-//     let valid = true;
-//     const newError = [];
-//     if (!state.email.trim()) {
-//       newError.email = "email is required";
-//       valid = false;
-//     } else if (!/\S+@\S+\.\S+/.test(state.email)) {
-//       newError.email = "Email is invalid";
-//       valid = false;
-//     }
-
-//     if (!state.password.trim()) {
-//       newError.password = "password is required";
-//       valid = false;
-//     } else if (state.password.length < 6) {
-//       newError.password = "password must be more than 6";
-//       valid = false;
-//     }
-//     setError(newError);
-//     return valid;
-//   };
-
-//   // handle submit for post
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     if (ValidateForm()) {
-//       try {
-//         const response = await axios.post("http://localhost:4000/user/login", {
-//           email: state.email,
-//           password: state.password,
-//         });
-//         console.log(state.email);
-//         console.log("user logged in", response);
-//         dispatch({ type: "RESET", payload: initialState });
-//       } catch (error) {
-//         console.log(error.response.data);
-//       }
-//     }
-//   };
-//   return (
-//     <div className='p-24 font-["Poppins", sans-serif]'>
-//       <div className="flex justify-center items-center ">
-//         <form action="" onSubmit={handleSubmit}>
-//           <div className="py-6">
-//             {error.email && <div style={{ color: "red" }}>{error.email}</div>}
-
-          
-//             <input type="email" name="email" id=""  value={state.email} onChange={handleEmailChange}  className="border-2 border-solid border-[#4579A0] w-80 py-3 px-3 focus:outline-none rounded-md shadow-md"   placeholder="email"/>
-//           </div>
-//           <div className="py-6">
-//             {error.password && (
-//               <div style={{ color: "red" }}>{error.password}</div>
-//             )}
-//             <input
-//               type="password"
-//               name="password"
-//               value={state.password}
-//               id=""
-//               placeholder="password"
-//               onChange={handlePasswordChange}
-//               className="border-2 border-solid border-[#4579A0] w-80 py-3 px-3 focus:outline-none rounded-md shadow-md"
-//             />
-//           </div>
-//           <button type="submit">login</button>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Login;
-
-
-
-import React, { useReducer, useState } from "react";
+import React, { useContext, useReducer, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import { AuthContext } from "./Loginhandlers";
 
 // reducer function
 const reducer = (state, action) => {
@@ -137,12 +22,14 @@ const reducer = (state, action) => {
   }
 };
 const Login = () => {
+  const{login,state}=useContext(AuthContext)
   const initialState = {
     // name: "",
     email: "",
     password: " ",
   };
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [FORMDATA, dispatch] = useReducer(reducer, initialState);
+
   // handleChange for input
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -160,17 +47,17 @@ const Login = () => {
     //   newError.name = "Name is required";
     //   valid = false;
     // }
-    if (!state.email.trim()) {
+    if (!FORMDATA.email.trim()) {
       newError.email = "Email is required";
       valid = false;
-    } else if (!/\S+@\S+\.\S+/.test(state.email)) {
+    } else if (!/\S+@\S+\.\S+/.test(FORMDATA.email)) {
       setError("Email is invalid");
       valid = false;
     }
-    if (!state.password.trim()) {
+    if (!FORMDATA.password.trim()) {
       newError.password = "Password is required";
       valid = false;
-    } else if (state.password.length < 6) {
+    } else if (FORMDATA.password.length < 6) {
       newError.password = "Password must be at least 6 characters";
       valid = false;
     }
@@ -180,73 +67,80 @@ const Login = () => {
   };
 
   // onsubmit
-  const handleSubmit =async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (ValidateForm()) {
-      try {
-        const response = await axios.post("http://localhost:4000/user/login", {
-          // name: state.name,
-          email: state.email,
-          password: state.password,
-        }, { withCredentials: true }
-        );
-        console.log("user successfully registered", response);
-        dispatch({ type: "RESET", initialState });
-      } catch (error) {
-        console.log(error.response.data);
-      }
+      login(FORMDATA)
+         dispatch({ type: "RESET", initialState });
+      // try {
+      //   const response = await axios.post(
+      //     "http://localhost:4000/user/login",
+      //     {
+      //       // name: state.name,
+      //       email: state.email,
+      //       password: state.password,
+      //     },
+      //     { withCredentials: true }
+      //   );
+      //   console.log("user successfully registered", response);
+     
+      // } catch (error) {
+      //   console.log(error.response.data);
+      // }
     }
   };
   return (
-    <div className='p-24 font-["Poppins", sans-serif] '>
-      <form
-        action=""
-        className="flex flex-col justify-center items-center"
-        onSubmit={handleSubmit}
-      >
-        {/* <div className="my-6 ">
-          {error.name && <div style={{ color: "red" }}>{error.name}</div>}
-          <input
-            type="text"
-            name="name"
-            id=""
-            value={state.name}
-            placeholder="name"
-            onChange={handleChange}
-            className="border-2 border-solid border-[#4579A0] py-4 w-80 shadow-md focus:outline-none px-2 rounded-md capitalize "
-          />
-        </div> */}
-        <div className="my-6">
-          {error.email && <div style={{ color: "red" }}>{error.email}</div>}
-          <input
-            type="email"
-            name="email"
-            id=""
-            value={state.email}
-            placeholder="email"
-            className="border-2 border-solid border-[#4579A0] py-4 w-80 shadow-md focus:outline-none px-2 rounded-md capitalize "
-            onChange={handleChange}
-          />
-        </div>
-        <div className="my-6">
-          {error.password && (
-            <div style={{ color: "red" }}>{error.password}</div>
-          )}
-          <input
-            type="password"
-            name="password"
-            id=""
-            value={state.password}
-            placeholder="password"
-            className="border-2 border-solid border-[#4579A0] py-4 w-80 shadow-md focus:outline-none px-2 rounded-md capitalize "
-            onChange={handleChange}
-          />
-        </div>
-        <button type="submit">signup</button>
-      </form>
+    <div className='p-24 font-["Poppins", sans-serif] w-full'>
+      <div className="border border-solid w-4/12 mx-auto shadow-lg p-6">
+        <form
+          action=""
+          className="flex flex-col justify-center items-center"
+          onSubmit={handleSubmit}
+        >
+          <div className="my-6">
+            {error.email && <div style={{ color: "red" }}>{error.email}</div>}
+            <input
+              type="email"
+              name="email"
+              id="email"
+              value={FORMDATA.email}
+              autoComplete="current-email"
+              placeholder="email"
+              className="border-2 border-solid border-[#4579A0] py-4 w-80 shadow-md focus:outline-none px-2 rounded-md capitalize "
+              onChange={handleChange}
+            />
+          </div>
+          <div className="my-6">
+            {error.password && (
+              <div style={{ color: "red" }}>{error.password}</div>
+            )}
+            <input
+              type="password"
+              name="password"
+              id="password"
+              value={FORMDATA.password}
+              placeholder="password"
+              autoComplete="current-password"
+              className="border-2 border-solid border-[#4579A0] py-4 w-80 shadow-md focus:outline-none px-2 rounded-md capitalize "
+              onChange={handleChange}
+            />
+          </div>
+          <button
+            type="submit"
+            className="bg-[#4579A0] capitalize w-36 py-2 rounded-md text-white text-md mt-2"
+          >
+            sign in
+          </button>
+          <p className="text-sm mt-2">
+            Dont have an account ?{" "}
+            <span className="text-[#4579A0] capitalize">
+              <Link to="/sign">signup</Link>
+            </span>
+          </p>
+        </form>
+      </div>
     </div>
   );
 };
 
 export default Login;
-

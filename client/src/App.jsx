@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "./component/navbar/Navbar";
 import { ThemeContext } from "./component/navbar/themeContext";
+import { AuthProvider } from "./component/Sign/Loginhandlers";
 import Body from "./component/body/Body";
 import {
   createBrowserRouter,
@@ -22,7 +23,7 @@ import Error from "./component/more/Error";
 import SignUp from "./component/Sign/SignUp";
 import Login from "./component/Sign/Login";
 import { Contact } from "./component/contact/Contact";
-import LoginForm from "./component/Sign/Login2";
+import Comment from "./component/blog/comment";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -36,13 +37,13 @@ const App = () => {
         <Route path="category/culture" element={<Culture/>}/>
         <Route path="category/IT" element={<Startup/>}/>
         <Route path="blog/featured" element={<Featured/>}/>
-        <Route path="blog/single" element={<Single/>}/>
+        <Route path="blog/single/:blogId" element={<Single/>}/>
         <Route path="blog/video" element={<Video/>}/>
         <Route path="more/author" element={<Author/>}/>
         <Route path="more/searchResult" element={<SearchResult/>}/>
         <Route path="blog/lifestyle" element={<Lifestyle/>}/>
-        <Route path="/logins" element={<LoginForm/>}/>
         <Route path="/contact" element={<Contact/>}/>
+        <Route path="/blog/:blogId/comment" element={<Comment/>}/>
         <Route path="*" element={<Error/>}/>
 
          
@@ -52,13 +53,14 @@ const App = () => {
   );
   return (
     <div>
+      <AuthProvider>
         
       <ThemeContext>
    
         
         <RouterProvider router={router} />
       </ThemeContext>
-
+</AuthProvider>
       
     </div>
     

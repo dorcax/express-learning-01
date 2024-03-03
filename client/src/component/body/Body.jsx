@@ -33,7 +33,7 @@ const navigate =useNavigate()
     <div>
       <div className='p-24 font-["Poppins", sans-serif]'>
         <div className=" ">
-          <h2 className="capitalize text-3xl font-bold py-3">featured posts</h2>
+          <h2 className="capitalize text-3xl font-serif py-3">featured posts</h2>
           <div className="border border-solid   ">
             <div className="border border-solid border-black w-14"></div>
           </div>
@@ -52,8 +52,8 @@ const navigate =useNavigate()
                           className="rounded-md  w-full"
                         />
 
-                        <div className=" ">
-                          <h2 className="text-2xl  py-2 font-semibold  hover:text-[#4579A0]">
+                        <div className="shadow-md text-center ">
+                          <h2 className="text-2xl  py-2 font-serif  hover:text-[#4579A0]">
                             <Link to={er.id}>
                               {er.title.charAt(0).toUpperCase() +
                                 er.title.slice(1)}
@@ -67,6 +67,7 @@ const navigate =useNavigate()
                               er.user.name.slice(1)}{" "}
                             <span className="text-gray-400">in</span> design
                           </p>
+                         <Link to= {`/blog/single/${er.id}`}>readmore</Link> 
                         </div>
                       </div>
                     </div>

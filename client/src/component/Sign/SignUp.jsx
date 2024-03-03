@@ -1,5 +1,6 @@
 import React, { useReducer, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 // reducer function
 const reducer = (state, action) => {
@@ -80,7 +81,8 @@ const SignUp = () => {
     }
   };
   return (
-    <div className='p-24 font-["Poppins", sans-serif] '>
+    <div className='p-24 font-["Poppins", sans-serif] w-full'>
+      <div className="border border-solid w-4/12 max-h-screen mx-auto shadow-md p-5">
       <form
         action=""
         className="flex flex-col justify-center items-center"
@@ -124,8 +126,12 @@ const SignUp = () => {
             onChange={handleChange}
           />
         </div>
-        <button type="submit">signup</button>
+        <button type="submit" className="bg-[#4579A0] px-6 py-2 w-36 text-[#fff] capitalize rounded-md border border-solid mb-4 my-2" >signup</button>
+        <p className="
+        text-sm">Have an account ? <span className="text-[#4579A0]  text-md"><Link to="/login">Sign in</Link></span></p>
       </form>
+      </div>
+     
     </div>
   );
 };
