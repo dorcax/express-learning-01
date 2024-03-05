@@ -22,7 +22,7 @@ const reducer = (state, action) => {
   }
 };
 const Login = () => {
-  const{login,state}=useContext(AuthContext)
+  const{login,state,LoadUser}=useContext(AuthContext)
   const initialState = {
     // name: "",
     email: "",
@@ -71,6 +71,7 @@ const Login = () => {
     e.preventDefault();
     if (ValidateForm()) {
       login(FORMDATA)
+      LoadUser()
          dispatch({ type: "RESET", initialState });
       // try {
       //   const response = await axios.post(

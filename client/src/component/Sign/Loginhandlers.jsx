@@ -38,11 +38,22 @@ const AuthProvider = ({ children }) => {
   };
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  const LoadUser =async()=>{
+    try {
+      const response =await axios.get("http://localhost:4000/user",{withCredentials:true})
+      dispatch({type:"USERLOADED",payload:response.data})
+    } catch (error) {
+      dispatch({ type: 'LOGIN_FAIL', payload: err.response.data.msg })
+    }
+
+  }
+
   const login = async (FORMDATA) => {
     try {
       const res = await axios.post("http://localhost:4000/user/login",FORMDATA,{withCredentials:true})
       dispatch({ type: "LOGIN", payload: res.data });
-      dispatch({ type: "RESET", initialState });
+      // LoadUser()      
+      // dispatch({ type: "RESET", initialState });
     } catch (error) {
       dispatch({ type: "LOGIN_FAIL" ,payload:error});
     }
@@ -51,15 +62,6 @@ const AuthProvider = ({ children }) => {
     dispatch({ type: "LOGOUT" });
   };
 
-  // const LoadUser =async()=>{
-  //   try {
-  //     const response =await axios.get("http://localhost:4000/user",{withCredentials:true})
-  //     dispatch({type:"USERLOADED",payload:response.data})
-  //   } catch (error) {
-  //     dispatch({ type: 'LOGIN_FAIL', payload: err.response.data.msg })
-  //   }
-
-  // }
   // const handleLogout = async () => {
   //   try {
   //     await axios.post('http://localhost:3001/logout');
@@ -76,7 +78,7 @@ const AuthProvider = ({ children }) => {
         logout,
         name: state.name,
         IsAuthenticated: state.IsAuthenticated,
-        // LoadUser
+        LoadUser
       }}
     >
       {children}

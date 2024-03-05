@@ -50,7 +50,7 @@ const Single = () => {
                       {/* {er.content} */}
                     </p>
                   </div>
-                  <div className="p-3 max-w-5xl mx-auto w-full post-content indent-12 break-normal leading-loose text-lg">
+                  <div className="p-3 max-w-5xl mx-auto  post-content indent-12 break-normal leading-loose text-lg">
                     {er.content}
                   </div>
                   {/* <Link to={`/blog/${er.id}/comment`}>comment</Link> */}
