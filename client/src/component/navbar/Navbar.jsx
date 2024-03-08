@@ -7,13 +7,15 @@ import Darkmode from "./darkmode";
 import { DarkmodeContext } from "./themeContext";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Sign/Loginhandlers";
+import ModalSearch from "./ModalSearch";
 
 const Navbar = () => {
-  const { login, logout, IsAuthenticated } = useContext(AuthContext);
+  const { login, logout,isAuthenticated} = useContext(AuthContext);
   const { theme, toggleTheme } = useContext(DarkmodeContext);
   const [dropdown, setdropdown] = useState(false);
   const [dropdown1, setdropdown1] = useState(false);
   const [dropdown2, setdropdown2] = useState(false);
+  const[openModal,setCloseModal] =useState(false)
   const handleClick = () => {
     setdropdown(!dropdown);
   };
@@ -25,6 +27,11 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // modal togggle
+  const handleToggleModal =()=>{
+    setCloseModal(!openModal)
+
+  }
   return (
     <div
       className={`${
@@ -77,13 +84,17 @@ const Navbar = () => {
             <Link to="/contact">contact</Link>
           </li>
           {/* <li> <Link to="/login">login</Link></li> */}
-          <span className="px-4 text-lg ">
+          <span className="px-4 text-lg " onClick={handleToggleModal}>
             <i class="fa-solid fa-magnifying-glass"></i>
           </span>
+              
+              
+              
+         {openModal && <ModalSearch closeMenu ={handleToggleModal}/> }
         </ul>
       </nav>
       <div className=" hidden  flex items-center md:flex  items-center  ">
-        {IsAuthenticated ? (
+        {isAuthenticated ? (
           <button
             onClick={logout}
             className="border border-solid border-[#4579A0] px-4 py-2 rounded-md capitalize text-md hover:bg-[#4579A0] hover:text-[#fff] transition ease-out duration-500  "

@@ -22,7 +22,7 @@ const reducer = (state, action) => {
   }
 };
 const Login = () => {
-  const{login,state,LoadUser}=useContext(AuthContext)
+  const{Login,state,LoadUser}=useContext(AuthContext)
   const initialState = {
     // name: "",
     email: "",
@@ -70,24 +70,10 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (ValidateForm()) {
-      login(FORMDATA)
-      LoadUser()
+      Login(FORMDATA)
+      
          dispatch({ type: "RESET", initialState });
-      // try {
-      //   const response = await axios.post(
-      //     "http://localhost:4000/user/login",
-      //     {
-      //       // name: state.name,
-      //       email: state.email,
-      //       password: state.password,
-      //     },
-      //     { withCredentials: true }
-      //   );
-      //   console.log("user successfully registered", response);
-     
-      // } catch (error) {
-      //   console.log(error.response.data);
-      // }
+    
     }
   };
   return (

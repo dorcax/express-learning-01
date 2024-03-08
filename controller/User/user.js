@@ -71,9 +71,20 @@ console.log(IsMatch)
     httpOnly:true,
     maxAge:1000*60*60*24
   })
-  return res.status(200).json({user:User });
+  return res.status(200).json({user:User,token:createToken });
 });
 
+
+// an endpoint to getuser
+module.exports.getUser=asyncWrapper(async(req,res,next)=>{
+  const getUser =await db.user.findUnique({
+    where:{id:+req.User.id}
+  })
+  if(!getUser){
+    return next(createCustomError("user cant be found ",404))
+  }
+  return res.status(200).json(getUser)
+})
 // an endpoint to deleteUser
 module.exports.deleteUser = asyncWrapper(async (req, res, next) => {
   const deleteuser = await db.user.delete({

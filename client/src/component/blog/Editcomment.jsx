@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const Editcomment = () => {
-  const { blogId } = useParams();
+  const { blogId,commentId } = useParams();
   const [data, setData] = useState(null);
   useEffect(() => {
     const fetch = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4000/blog/${blogId}/comment`
+          `http://localhost:4000/blog/${blogId}/comment/${commentId}`,{withcredentials:true}
         );
         setData(response.data);
       } catch (error) {
@@ -25,14 +25,13 @@ const Editcomment = () => {
           data.map((er) => {
             return (
               <div>
-                <textarea
+                <input
                   name="content"
                   value={er.content}
                   id=""
-                  cols="20"
-                  rows="4"
+                
                   className="border border-solid w-80"
-                ></textarea>
+                />
               </div>
             );
           })}
