@@ -1,7 +1,8 @@
 import React, { useContext, useReducer, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
 import { AuthContext } from "./Loginhandlers";
+
 
 // reducer function
 const reducer = (state, action) => {
@@ -22,14 +23,15 @@ const reducer = (state, action) => {
   }
 };
 const Login = () => {
-  const{Login,state,LoadUser}=useContext(AuthContext)
+  
+  const{Login,state}=useContext(AuthContext)
   const initialState = {
     // name: "",
     email: "",
     password: " ",
   };
   const [FORMDATA, dispatch] = useReducer(reducer, initialState);
-
+const navigate =useNavigate()
   // handleChange for input
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -71,8 +73,8 @@ const Login = () => {
     e.preventDefault();
     if (ValidateForm()) {
       Login(FORMDATA)
-      
-         dispatch({ type: "RESET", initialState });
+      dispatch({ type: "RESET", initialState });
+      navigate("/")
     
     }
   };

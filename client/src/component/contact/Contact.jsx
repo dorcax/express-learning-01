@@ -6,7 +6,7 @@ export const Contact = () => {
     <div>
            <div className='p-24 font-["Poppins", sans-serif] '>
       <div className="w-full">
-        <h1 className="text-3xl capitalize font-bold py-3">
+        <h1 className="text-3xl capitalize font-serif py-3">
           leave us a message
         </h1>
         <div className="border border-solid border-gray-400 ">
@@ -15,7 +15,7 @@ export const Contact = () => {
         <div className="grid grid-cols-2 gap-16 content-start py-10">
           <div>
             <div className="max-w-2xl ">
-              <h2 className="text-3xl font-semibold capitalize ">
+              <h2 className="text-3xl font-serif capitalize ">
                 contact details
               </h2>
               <p className="py-6 text-lg">
@@ -35,7 +35,7 @@ export const Contact = () => {
                 </span>
 
                 <div className="px-4 capitalize  ">
-                  <h2 className="text-2xl font-semibold hover:text-[#4579A0]">address</h2>
+                  <h2 className="text-2xl font-serif hover:text-[#4579A0]">address</h2>
                   <p className="text-md text-gray-400">
                     24,akorohunfayo fadeyi street lagos
                   </p>
@@ -48,7 +48,7 @@ export const Contact = () => {
                 </span>
 
                 <div className="capitalize px-4 hover:text-[#4579A0]">
-                  <h2 className="font-semibold capitalize text-2xl">call us</h2>
+                  <h2 className="font-serif capitalize text-2xl">call us</h2>
                   <p className="text-md text-gray-400">
                     24,akorohunfayo fadeyi street lagos
                   </p>
@@ -61,7 +61,7 @@ export const Contact = () => {
                 </span>
 
                 <div className="capitalize px-4">
-                  <h2 className="capitalize text-2xl font-semibold hover:text-[#4579A0]">address</h2>
+                  <h2 className="capitalize text-2xl font-serif hover:text-[#4579A0]">address</h2>
                   <p className="text-md text-gray-400">
                     24,akorohunfayo fadeyi street lagos
                   </p>

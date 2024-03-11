@@ -8,7 +8,7 @@ const Error = () => {
           <div className='p-24 font-["Poppins", sans-serif] '>
       <div className='flex justify-center  items-center'>
         <div>
-       <img src={img} alt="error image" srcset="" width={600} />
+       <img src={img} alt="error image" srcset="" width={600} className='rounded-full' />
         </div>
         <div className='px-10 '>
           <h2 className='text-8xl text-[#4579A0] font-bold'>404</h2>

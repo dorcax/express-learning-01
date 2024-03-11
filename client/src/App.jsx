@@ -1,5 +1,7 @@
 import React from "react";
-import Navbar from "./component/navbar/Navbar";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { ThemeContext } from "./component/navbar/themeContext";
 import { AuthProvider } from "./component/Sign/Loginhandlers";
 import Body from "./component/body/Body";
@@ -28,42 +30,34 @@ import Comment from "./component/blog/comment";
 const App = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
-    
-      <Route path="/" element={<MainNav/>}>
+      <Route path="/" element={<MainNav />}>
         <Route index element={<Body />} />
         <Route path="sign" element={<SignUp />} />
-        <Route path="login" element={<Login/>}/>
-        <Route path="category/lifestyle" element={<Lifestyle/>}/>    
-        <Route path="category/culture" element={<Culture/>}/>
-        <Route path="category/IT" element={<Startup/>}/>
-        <Route path="blog/featured" element={<Featured/>}/>
-        <Route path="blog/single/:blogId" element={<Single/>}/>
-        <Route path="blog/video" element={<Video/>}/>
-        <Route path="more/author" element={<Author/>}/>
-        <Route path="more/searchResult" element={<SearchResult/>}/>
-        <Route path="blog/lifestyle" element={<Lifestyle/>}/>
-        <Route path="/contact" element={<Contact/>}/>
-        <Route path="/blog/:blogId/comment" element={<Comment/>}/>
-        <Route path="*" element={<Error/>}/>
-
-         
+        <Route path="login" element={<Login />} />
+        <Route path="category/lifestyle" element={<Lifestyle />} />
+        <Route path="category/culture" element={<Culture />} />
+        <Route path="category/IT" element={<Startup />} />
+        <Route path="blog/featured" element={<Featured />} />
+        <Route path="blog/single/:blogId" element={<Single />} />
+        <Route path="blog/video" element={<Video />} />
+        <Route path="more/author" element={<Author />} />
+        <Route path="more/searchResult" element={<SearchResult />} />
+        <Route path="blog/lifestyle" element={<Lifestyle />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/blog/:blogId/comment" element={<Comment />} />
+        <Route path="*" element={<Error />} />
       </Route>
-  
     )
   );
   return (
     <div>
       <AuthProvider>
-        
-      <ThemeContext>
-   
-        
-        <RouterProvider router={router} />
-      </ThemeContext>
-</AuthProvider>
-      
+        <ThemeContext>
+          <RouterProvider router={router} />
+          <ToastContainer></ToastContainer>
+        </ThemeContext>
+      </AuthProvider>
     </div>
-    
   );
 };
 

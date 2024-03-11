@@ -15,19 +15,19 @@ const Footer = () => {
           </div>
           <div>
             <ul className="flex  py-3">
-              <li className=" flex items-center  text-lg justify-center px-4 text-gray-400 hover:text-[#4579A0] hover:w-10  hover:h-10 hover::py-2 hover:rounded-full hover:border hover:border-solid">
+              <li className=" flex items-center  text-lg justify-center px-4 text-gray-400 hover:text-[#4579A0] hover:w-10  hover:h-10 hover:rounded-full hover:border hover:border-solid">
                 <i class="fab fa-facebook-f"></i>
               </li>
-              <li className="flex items-center  justify-center  text-lg  px-4 text-gray-400 hover:text-[#4579A0] hover:w-10  hover:h-10 hover::py-2 hover:rounded-full hover:border hover:border-solid">
+              <li className="flex items-center  justify-center  text-lg  px-4 text-gray-400 hover:text-[#4579A0] hover:w-10  hover:h-10  hover:rounded-full hover:border hover:border-solid">
                 <i class="fab fa-instagram"></i>
               </li>
-              <li className="flex items-center justify-center text-lg  px-4 text-gray-400 hover:text-[#4579A0] hover:w-10  hover:h-10 hover::py-2 hover:rounded-full hover:border hover:border-solid">
+              <li className="flex items-center justify-center text-lg  px-4 text-gray-400 hover:text-[#4579A0] hover:w-10  hover:h-10  hover:rounded-full hover:border hover:border-solid">
                 <i class="fab fa-linkedin-in"></i>
               </li>
-              <li className="flex items-center justify-center text-lg  px-4 text-gray-400 hover:text-[#4579A0] hover:w-10  hover:h-10 hover::py-2 hover:rounded-full hover:border hover:border-solid">
+              <li className="flex items-center justify-center text-lg  px-4 text-gray-400 hover:text-[#4579A0] hover:w-10  hover:h-10 hover:rounded-full hover:border hover:border-solid">
                 <i class="fab fa-github"></i>
               </li>
-              <li className="flex items-center justify-center text-lg  px-4 text-gray-400 hover:text-[#4579A0] hover:w-10  hover:h-10 hover::py-2 hover:rounded-full hover:border hover:border-solid">
+              <li className="flex items-center justify-center text-lg  px-4 text-gray-400 hover:text-[#4579A0] hover:w-10  hover:h-10 hover:rounded-full hover:border hover:border-solid">
                 <i class="fa-brands fa-twitter"></i>
               </li>
             </ul>

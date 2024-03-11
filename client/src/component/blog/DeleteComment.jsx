@@ -1,24 +1,38 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const DeleteComment = () => {
-  const[deleted,Setdeleted] =useState(false)
-  const[error,setError] =useState(null)
-  const{blogId,commentId}=useParams()
+const DeleteComment = ({commentId}) => {
+  const[deleted,Setdeleted] =useState([])
+  const[error,setError] =useState([])
+  const{blogId}=useParams()
 
   const handleDelete = async()=>{
     try {
       const response =await axios.delete(`http://localhost:4000/blog/${blogId}/comment/${commentId}`,{withCredentials:true})
         Setdeleted(response.data)
+        toast.success("comment deleted")
     } catch (error) {
-      console.error('Error deleting blog:', error);
-          setError('Error deleting the blog. Please try again later.');
+      
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.log(error.response.data.msg);
+     
+        setError(error.response.data.msg)
+        toast.error(error.response.data.msg)
+       
+   
+      } 
     }
   }
   return (
-    <div><button className="px-3 mx-4 border border-solid  capitalize rounded-lg border-[#4579A0] hover:bg-[#4579A0] hover:text-white text-lg py-2" onClick={handleDelete}>
-    edit
+    <div>
+     
+      <button className="px-3   capitalize  text-sm py-2" onClick={handleDelete} >
+    delete
    </button></div>
   )
 }

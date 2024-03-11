@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import axios from "axios";
 import Footer from "../footer/Footer";
+import { Link } from "react-router-dom";
+import { DarkmodeContext } from "../navbar/themeContext";
 
 const Lifestyle = () => {
+  const { theme, toggleTheme } = useContext(DarkmodeContext);
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
+
 
   useEffect(() => {
     const lifefeature = async () => {
@@ -21,13 +25,13 @@ const Lifestyle = () => {
     <div>
       <div className='p-24 font-["Poppins", sans-serif]'>
         <div>
-          <h2 className="capitalize text-3xl font-bold py-3">
+          <h2 className="capitalize text-3xl font-serif py-3">
             lifestyle posts
           </h2>
           <div className="border border-solid  w-full">
             <div className="w-14 bg-black h-0.5"></div>
           </div>
-          <div className="pt-8">
+          <div className="py-10">
             <div className="grid grid-cols-3 gap-6">
               {data &&
                 data.length > 0 &&
@@ -35,7 +39,12 @@ const Lifestyle = () => {
                   if (er.category === "LIFESTYLE") {
                     return (
                       <div>
-                        <div className="my-6">
+                        <Link to={`/blog/single/${er.id}`}>
+                        <div className={`${
+                      theme === "light"
+                        ? 'shadow-md pb-6 '
+                        : 'shadow-md pb-6 bg-[#f6f6f6] text-black'
+                    }   `}>
                           <div>
                             <img
                               src={er.imageUrl}
@@ -43,22 +52,19 @@ const Lifestyle = () => {
                               srcset=""
                               className="w-full rounded-md"
                             />
-                            <div>
-                              <h2 className="text-2xl py-2 font-semibold hover:text-[#4579A0]">
+                            <div className="text-center pb-6">
+                              <h2 className="text-2xl py-2 font-serif hover:text-[#4579A0]">
                                 {er.title.charAt(0).toUpperCase() +
                                   er.title.slice(1)}
                               </h2>
                               <p className="text-lg font-normal hover:text-[#4579A0]">
                                 {er.content.substring(0, 74)}......
                               </p>
-                              <p className="text-md py-2 hover:text-[#4579A0]">
-                                {er.user.name.charAt(0).toUpperCase() +
-                                  er.user.name.slice(1)}{" "}
-                                <span className="text-gray-400">in</span> design
-                              </p>
+                             
                             </div>
                           </div>
-                        </div>
+                        </div></Link>
+                       
                       </div>
                     );
                   }
