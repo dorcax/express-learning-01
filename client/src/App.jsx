@@ -26,7 +26,7 @@ import SignUp from "./component/Sign/SignUp";
 import Login from "./component/Sign/Login";
 import { Contact } from "./component/contact/Contact";
 import Comment from "./component/blog/comment";
-import ProtectedRoutes from "./component/ProtectedRoutes";
+
 
 const App = () => {
   const router = createBrowserRouter(
