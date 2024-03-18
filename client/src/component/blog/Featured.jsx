@@ -16,7 +16,7 @@ const Featured = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/blog",{
+        const response = await axios.get("https://blog-website-lbk2.onrender.com/blog",{
           withCredentials:true
         });
         setDataList(response.data);

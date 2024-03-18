@@ -37,12 +37,16 @@ const AuthProvider = ({children}) => {
 // user endpoint
 const UserLoad =async()=>{
   try {
-    const response =await axios.get("http://localhost:4000/user",{
+    const response =await axios.get("https://blog-website-lbk2.onrender.com/user",{
       headers:{
         "Authorization":`Bearer ${localStorage.getItem("token")}`
       }
     })
-    dispatch({type:"USERLOADED",payload:response.data})
+    const user =response.data
+
+    dispatch({type:"USERLOADED",payload:user})
+    localStorage.setItem("user",JSON.stringify(user))
+   
   } catch (error) {
     dispatch({ type: 'LOGIN_ERROR', payload: error.response.data.msg});
     toast.error(state.error)
@@ -53,7 +57,7 @@ const UserLoad =async()=>{
 
 const Login =async(FORMDATA)=>{
   try {
-    const response =await axios.post("http://localhost:4000/user/login",FORMDATA)
+    const response =await axios.post("https://blog-website-lbk2.onrender.com/user/login",FORMDATA)
     dispatch({type:"LOGIN_SUCCESS",payload:response.data})
     UserLoad()
     localStorage.setItem("token",response.data.token)

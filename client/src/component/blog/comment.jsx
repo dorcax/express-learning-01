@@ -28,7 +28,7 @@ const comment = () => {
         e.preventDefault()
         if(ValidateForm()){
             try {
-                const response =await axios.post(`http://localhost:4000/blog/${blogId}/comment`,{
+                const response =await axios.post(`https://blog-website-lbk2.onrender.com/blog/${blogId}/comment`,{
                     content:content
                 },{
                   headers:{

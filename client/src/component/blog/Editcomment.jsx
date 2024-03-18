@@ -13,7 +13,7 @@ const Editcomment = ({ commentId ,isEdit,onEditToggle}) => {
     const fetch = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4000/blog/${blogId}/comment/${commentId}`,
+          `https://blog-website-lbk2.onrender.com/blog/${blogId}/comment/${commentId}`,
           { headers:{
             "Authorization":`Bearer ${localStorage.getItem("token")}`
           } }

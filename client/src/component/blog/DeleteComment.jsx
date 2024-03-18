@@ -11,7 +11,7 @@ const DeleteComment = ({commentId}) => {
 
   const handleDelete = async()=>{
     try {
-      const response =await axios.delete(`http://localhost:4000/blog/${blogId}/comment/${commentId}`,{
+      const response =await axios.delete(`https://blog-website-lbk2.onrender.com/blog/${blogId}/comment/${commentId}`,{
         headers:{
           "Authorization":`Bearer ${localStorage.getItem("token")}`
         }

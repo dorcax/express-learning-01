@@ -6,7 +6,7 @@ const Error = () => {
   return (
     <div>
           <div className='p-24 font-["Poppins", sans-serif] '>
-      <div className='flex md:justify-center  items-center sm:flex-col'>
+      <div className='flex  md:flex-row justify-center  items-center sm:flex-col'>
         <div>
        <img src={img} alt="error image" srcset="" width={600} className='rounded-full' />
         </div>

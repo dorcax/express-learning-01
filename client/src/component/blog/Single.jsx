@@ -15,7 +15,7 @@ const Single = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4000/blog/${blogId}`,
+          `https://blog-website-lbk2.onrender.com/blog/${blogId}`,
   
         );
         setData(response.data);
@@ -46,7 +46,7 @@ const Single = () => {
       if (toggleLike) {
         // Unlike the post
         const likeId =localStorage.getItem("likeId")
-        const response = await axios.delete(`http://localhost:4000/blog/${blogId}/like/${likeId}`, {
+        const response = await axios.delete(`https://blog-website-lbk2.onrender.com/blog/${blogId}/like/${likeId}`, {
           headers:{
             "Authorization":`Bearer ${localStorage.getItem("token")}`
           }
@@ -55,7 +55,7 @@ const Single = () => {
         toast.success("Post unliked");
       } else {
         // Like the post
-        const response = await axios.post(`http://localhost:4000/blog/${blogId}/like`, null, {
+        const response = await axios.post(`https://blog-website-lbk2.onrender.com/blog/${blogId}/like`, null, {
           headers:{
             "Authorization":`Bearer ${localStorage.getItem("token")}`
           }

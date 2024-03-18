@@ -19,7 +19,7 @@ const Body = () => {
       //   navigate("/login");
       // }
       try {
-        const response = await axios.get("http://localhost:4000/blog");
+        const response = await axios.get("https://blog-website-lbk2.onrender.com/blog");
         setDataList(response.data);
         // console.log(response.data)
       } catch (error) {

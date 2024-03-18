@@ -11,7 +11,7 @@ const Startup = () => {
   useEffect(() => {
     const fetchedpost = async () => {
       try {
-        const result = await axios.get("http://localhost:4000/blog", {
+        const result = await axios.get("https://blog-website-lbk2.onrender.com/blog", {
           withCredentials: true,
         });
         setData(result.data);

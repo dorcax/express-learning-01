@@ -4,7 +4,7 @@ import { TypeAnimation } from 'react-type-animation'
 const Author = () => {
   return (
     <div className='p-24 font-["Poppins", sans-serif] '>
-      <div className='flex md:justify-center items-center sm:flex-col '>
+      <div className='flex md:flex-row justify-center items-center sm:flex-col'>
         <div className=''><img src={img2} alt="profile" srcset=""  width={250} height={250} className='rounded-full' /></div>
         <div className='px-6'>
           <h2 className='py-4'><span className='capitalize md:text-2xl sm:text-4xl'>hello,i'am </span>

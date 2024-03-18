@@ -68,7 +68,7 @@ const SignUp = () => {
     e.preventDefault();
     if (ValidateForm()) {
       try {
-        const response = await axios.post("http://localhost:4000/user", {
+        const response = await axios.post("https://blog-website-lbk2.onrender.com/user", {
           name: state.name,
           email: state.email,
           password: state.password,

@@ -12,7 +12,7 @@ const Culture = () => {
   useEffect(() => {
     const fetchCulture = async () => {
       try {
-        const result = await axios.get("http://localhost:4000/blog",{withCredentials:true});
+        const result = await axios.get("https://blog-website-lbk2.onrender.com/blog",{withCredentials:true});
         setData(result.data);
       } catch (error) {
         setError(error.result.message);
