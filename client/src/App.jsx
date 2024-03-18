@@ -26,14 +26,17 @@ import SignUp from "./component/Sign/SignUp";
 import Login from "./component/Sign/Login";
 import { Contact } from "./component/contact/Contact";
 import Comment from "./component/blog/comment";
+import ProtectedRoutes from "./component/ProtectedRoutes";
 
 const App = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<MainNav />}>
-        <Route index element={<Body />} />
-        <Route path="sign" element={<SignUp />} />
+         <Route path="sign" element={<SignUp />} />
         <Route path="login" element={<Login />} />
+        {/* <Route element={<ProtectedRoutes/>}> */}
+        <Route index element={<Body />} />
+       
         <Route path="category/lifestyle" element={<Lifestyle />} />
         <Route path="category/culture" element={<Culture />} />
         <Route path="category/IT" element={<Startup />} />
@@ -46,7 +49,8 @@ const App = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/blog/:blogId/comment" element={<Comment />} />
         <Route path="*" element={<Error />} />
-      </Route>
+        </Route>
+      // </Route>
     )
   );
   return (
