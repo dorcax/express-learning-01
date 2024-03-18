@@ -20,12 +20,7 @@ const corsOptions ={
 app.use(cors(corsOptions));
 app.use(cookieParser());
 
-// app.use(cors({
-//   origin:'http://localhost:4000', 
-//   credentials:true,            //access-control-allow-credentials:true
-//   // optionSuccessStatus:200
-// }
-// ))
+
 
 
 
