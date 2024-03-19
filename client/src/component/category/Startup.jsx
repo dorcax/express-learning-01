@@ -2,6 +2,7 @@ import React, { useEffect, useState,useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { DarkmodeContext } from "../navbar/themeContext";
+import Footer from "../footer/Footer";
 
 const Startup = () => {
   const { theme, toggleTheme } = useContext(DarkmodeContext);
@@ -23,15 +24,15 @@ const Startup = () => {
   }, []);
   return (
     <div>
-      <div className='p-24 font-["Poppins", sans-serif]'>
+      <div className='md:p-24 font-["Poppins", sans-serif] sm:px-10 sm:py-12'>
         <div>
-          <h2 className="py-3 md:text-3xl font-serif sm:text-4xl">IT posts</h2>
-          <div className="border border-solid w-full">
-            <div className="w-14 h-0.5 bg-black"></div>
+          <h2 className="py-3 text-3xl font-serif ">IT posts</h2>
+          <div className="border border-solid border-gray-400 w-full">
+            <div className="w-14 h-px bg-black"></div>
           </div>
         </div>
         <div className="pt-8">
-          <div className="grid  md:grid-cols-3 gap-6  sm:grid-cols-1">
+          <div className="grid  gap-6  sm:grid-cols-1  md:grid-cols-2 lg:grid-cols-3 ">
             {data &&
               data.length > 0 &&
               data.map((er) => {
@@ -47,11 +48,11 @@ const Startup = () => {
                         <div>
                           <img src={er.imageUrl} alt="It images" srcset="" />
                           <div className="text-center pb-6 sm:py-4">
-                            <h2 className="md:text-2xl font-serif py-2 hover:text-[#4579A0] sm:text-3xl">
+                            <h2 className="text-2xl font-serif py-2 hover:text-[#4579A0] ">
                               {er.title.charAt(0).toUpperCase() +
                                 er.title.slice(1)}
                             </h2>
-                            <p className="md:text-lg font-normal hover:text-[#4579A0] sm:text-xl">
+                            <p className="text-lg font-normal hover:text-[#4579A0]">
                               {er.content.substring(0, 75)}..............
                             </p>
                            
@@ -65,6 +66,7 @@ const Startup = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

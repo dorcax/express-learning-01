@@ -16,18 +16,41 @@ export default {
   theme: {
     extend: {
       screens: {
-      //   // sm: '640px',
-      //   // // => @media (min-width: 640px) { ... }
+      //   '2xl': {'max': '1535px'},
+      //   // => @media (max-width: 1535px) { ... }
   
+      //   'xl': {'max': '1279px'},
+      //   // => @media (max-width: 1279px) { ... }
   
-     
-        'sm': {'max-width': '649px'},  // up to 639px
-        'md': {'max-width': '767px'},  // up to 767px
-        'lg': {'max-width': '1023px'}, // up to 1023px
-        'xl': {'max-width': '1279px'}, // up to 1279px
-        '2xl': {'max-width': '1535px'},// up to 1535px
-      },
+      //   'lg': {'max': '1023px'},
+      //   // => @media (max-width: 1023px) { ... }
+  
+      //   'md': {'max': '767px'},
+      //   // => @media (max-width: 767px) { ... }
+  
+      //   'sm': {'max': '639px'},
+      //   // => @media (max-width: 639px) { ... }
+      // }
+
+      'sm': '400px',
+      // => @media (min-width: 640px) { ... }
+
+      'md': '768px',
+      // => @media (min-width: 768px) { ... }
+
+      'lg': '1024px',
+      // => @media (min-width: 1024px) { ... }
+
+      'xl': '1280px',
+      // => @media (min-width: 1280px) { ... }
+
+      '2xl': '1536px',
+      // => @media (min-width: 1536px) { ... }
+    
+      // => @media (min-wi
+  
     },
+  }
   },
   plugins: [],
 }

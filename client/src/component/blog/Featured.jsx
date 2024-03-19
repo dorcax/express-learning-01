@@ -31,14 +31,14 @@ const Featured = () => {
 
   return (
     <div>
-      <div className='p-24 font-["Poppins", sans-serif]'>
+      <div className='md:p-24 font-["Poppins", sans-serif] sm:px-10 sm:py-10'>
         <div className=" ">
-          <h2 className="capitalize md:text-3xl font-serif py-3 sm:text-4xl">featured posts</h2>
-          <div className="border border-solid   ">
-            <div className="border border-solid border-black w-14"></div>
+          <h2 className="capitalize text-3xl font-serif py-3">featured posts</h2>
+          <div className="border border-solid border-gray-400  ">
+            <div className="bg-black w-14 h-px"></div>
           </div>
           <div className="py-10">
-            <div className="grid md:grid-cols-3 gap-6 sm:grid-cols-1 ">
+            <div className="grid  gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               {dataList &&
                 dataList.length > 0 &&
                 dataList.map((er) => {
@@ -57,13 +57,13 @@ const Featured = () => {
                         />
 
                         <div className=" text-center pb-6 sm:py-4">
-                          <h2 className="md:text-2xl  py-2 font-semibold  hover:text-[#4579A0] sm:text-3xl">
+                          <h2 className="text-2xl  py-2 font-semibold  hover:text-[#4579A0] ">
                             <Link to={er.id}>
                               {er.title.charAt(0).toUpperCase() +
                                 er.title.slice(1)}
                             </Link>
                           </h2>
-                          <p className="md:text-lg  font-normal hover:text-[#4579A0] sm:text-xl">
+                          <p className="text-lg  font-normal hover:text-[#4579A0]">
                             {er.content.substring(0, 80)}....
                           </p>
                           

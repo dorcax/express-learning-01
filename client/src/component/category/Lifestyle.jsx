@@ -23,16 +23,16 @@ const Lifestyle = () => {
   }, []);
   return (
     <div>
-      <div className='p-24 font-["Poppins", sans-serif]'>
+      <div className='md:p-24 font-["Poppins", sans-serif] sm:px-10 sm:py-12'>
         <div>
-          <h2 className="capitalize md:text-3xl font-serif py-3 sm:text-4xl">
+          <h2 className="capitalize text-3xl font-serif py-3 ">
             lifestyle posts
           </h2>
-          <div className="border border-solid  w-full">
-            <div className="w-14 bg-black h-0.5"></div>
+          <div className="border border-solid  border-gray-400 w-full">
+            <div className="w-14 bg-black h-px"></div>
           </div>
           <div className="py-10">
-            <div className="grid md:grid-cols-3 gap-6 sm:grid-cols-1">
+            <div className="grid  gap-6 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3">
               {data &&
                 data.length > 0 &&
                 data.map((er) => {
@@ -53,11 +53,11 @@ const Lifestyle = () => {
                               className="w-full rounded-md"
                             />
                             <div className="text-center pb-6 sm:py-4">
-                              <h2 className="md:text-2xl py-2 font-serif hover:text-[#4579A0] sm:text-3xl">
+                              <h2 className="text-2xl py-2 font-serif hover:text-[#4579A0]">
                                 {er.title.charAt(0).toUpperCase() +
                                   er.title.slice(1)}
                               </h2>
-                              <p className="md:text-lg font-normal hover:text-[#4579A0] sm:text-xl">
+                              <p className="text-lg font-normal hover:text-[#4579A0]">
                                 {er.content.substring(0, 74)}......
                               </p>
                              
