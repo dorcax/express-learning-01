@@ -12,7 +12,8 @@ const imageUpload = require("./image");
 // an endpoint to create blog superadmin
 module.exports.createBlog = async (req, res, next) => {
   // validate blog
-  const { error, value } = validateBlog(req.body);
+  try {
+    const { error, value } = validateBlog(req.body);
   if (error) {
     return next(createCustomError(error.message, 400));
   }
@@ -35,7 +36,12 @@ module.exports.createBlog = async (req, res, next) => {
     },
   });
   return res.status(200).json({ newBlog: newBlog });
-};
+}
+   catch (error) {
+    console.log(error)
+  }
+}
+  
 
 // an endpoint to get a blog for user
 module.exports.getBlog = asyncWrapper(async (req, res) => {
