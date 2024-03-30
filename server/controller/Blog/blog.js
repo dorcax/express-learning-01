@@ -46,7 +46,7 @@ module.exports.createBlog = async (req, res, next) => {
 // an endpoint to get a blog for user
 module.exports.getBlog = asyncWrapper(async (req, res) => {
   const blogs = await db.blog.findMany({
-    where: { userId: 5 },
+    where: { userId: req.User.id },
     include: {
       like:true,
       user: true,
@@ -54,7 +54,7 @@ module.exports.getBlog = asyncWrapper(async (req, res) => {
     },
   });
 
-  res.status(200).json(blogs);
+  return res.status(200).json(blogs);
 });
 // an endpoint to like a blog
 module.exports.createLike = asyncWrapper(async (req, res, next) => {
