@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Dropdown from "./dropdown/Dropdown";
 import Dropdown2 from "./dropdown/Dropdown2";
 import { category, blog, more } from "../../data/category";
@@ -16,17 +16,49 @@ const Navbar = () => {
   const [dropdown1, setdropdown1] = useState(false);
   const [dropdown2, setdropdown2] = useState(false);
   const[openModal,setCloseModal] =useState(false)
+  const[dropdowns,setdropdowns] =useState(false)
   const handleClick = () => {
     setdropdown(!dropdown);
   };
 
   // hamburger
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
 
   const setToggle = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+  // function that click outside
+  let menuRef =useRef()
+  let barRef =useRef()
+  useEffect(()=>{
+    let handler=(e)=>{
+      if(!menuRef.current.contains(e.target)){
+        setIsMenuOpen(false)
+      }
+    
 
+    }
+    document.addEventListener("mousedown",handler)
+    return ()=>{
+       document.removeEventListener("mousedown",handler) 
+    }
+  })
+
+  // let barRef =useRef()
+  useEffect(()=>{
+    let handler=(e)=>{
+      if(!barRef.current.contains(e.target)){
+        setdropdown(false)
+      }
+    
+
+    }
+    document.addEventListener("mousedown",handler)
+    return ()=>{
+       document.removeEventListener("mousedown",handler) 
+    }
+  })
   // modal togggle
   const handleToggleModal =()=>{
     setCloseModal(!openModal)
@@ -54,14 +86,17 @@ const Navbar = () => {
           design blog
         </h3>
       </div>
-      <nav className=" flex  item-center  ">
+      <nav className=" flex  item-center  "   >
         <ul className="hidden lg:flex lg:-center">
           <li className="px-4 capitalize text-lg font-light hover:font-normal ">
             <Link to="/">home</Link>
           </li>
           <li
+                    
             className="px-4 capitalize text-lg px-4 font-light hover:font-normal "
             onClick={handleClick}
+            ref={barRef}
+
           >
             categories <i className="fa-solid fa-chevron-down text-base"></i>
             {dropdown && <Dropdown />}
@@ -120,36 +155,41 @@ const Navbar = () => {
       
       {/* hamburger on small screen  */}
       
-        <div className="lg:hidden items-center ">
+       <div    ref={menuRef}>
+         <div className="items-center " >
           <button onClick={setToggle} className="text-2xl">{isMenuOpen?<i class="fas fa-times"></i>:<i class="fas fa-bars"></i>}</button>
         </div>
-        <nav className= {isMenuOpen?"fixed left-0 top-0 w-[50%] h-screen bg-[#000] text-white ease-in-out duration-500  text-center cursor-pointer" :"fixed left-[-100%]"}>
-        <ul className=" pt-20">
-          <li className="px-4 capitalize md:text-lg sm:text-xl  md:py-5 sm:py-8 font-light hover:font-normal ">
+        <nav className= {isMenuOpen?"fixed left-0 top-0 w-[50%] h-screen bg-[#000] text-white ease-in-out duration-500  text-center cursor-pointer" :"fixed left-[-100%]"} ref={menuRef} >
+        <ul className=" pt-20"  >
+          <li className="px-4 capitalize md:text-lg sm:text-xl  md:py-5 sm:py-5 font-light hover:font-normal ">
             <Link to="/">home</Link>
           </li>
           <li
-            className="px-4 capitalize md:text-lg sm:text-xl md:py-5 sm:py-8 font-light hover:font-normal "
+            className="px-4 capitalize md:text-lg sm:text-xl md:py-5 sm:py-5 font-light hover:font-normal "
             onClick={handleClick}
+            ref={barRef}
+         
           >
             categories <i className="fa-solid fa-chevron-down text-base"></i>
             {dropdown && <Dropdown />}
           </li>
           <li
-            className="px-4 capitalize md:text-lg md:py-5  sm:py-8 sm:text-xl font-light hover:font-normal"
+            className="px-4 capitalize md:text-lg md:py-5  sm:py-5 sm:text-xl font-light hover:font-normal"
             onClick={() => setdropdown1(!dropdown1)}
+            // ref={menuRef
+            // }
           >
             blog <i className="fa-solid fa-chevron-down text-base"></i>
             {dropdown1 && <Dropdown2 />}
           </li>
           <li
-            className="px-4 capitalize md:text-lg md:py-5 sm:py-8  sm:text-xl font-light hover:font-normal "
+            className="px-4 capitalize md:text-lg md:py-5 sm:py-5  sm:text-xl font-light hover:font-normal "
             onClick={() => setdropdown2(!dropdown2)}
           >
             more <i class="fa-solid fa-chevron-down text-base"></i>
             {dropdown2 && <Dropdown3 />}
           </li>
-          <li className="px-4 capitalize md:text-lg md:py-5  sm:py-8 sm:text-xl font-light hover:font-normal ">
+          <li className="px-4 capitalize md:text-lg md:py-5  sm:py-5 sm:text-xl font-light hover:font-normal ">
             <Link to="/contact">contact</Link>
           </li>
           {/* <li> <Link to="/login">login</Link></li> */}
@@ -161,7 +201,7 @@ const Navbar = () => {
               
          {openModal && <ModalSearch closeMenu ={handleToggleModal}/> }
         </ul>
-        <div className="flex flex-col items-center  md:py-5 sm:py-8 md:flex  items-center ">
+        <div className="flex flex-col items-center  md:py-5 sm:py-5 md:flex  items-center ">
         {isAuthenticated ? (
           <button
             onClick={logout}
@@ -184,6 +224,7 @@ const Navbar = () => {
       </nav>
     
     </div>
+       </div>
   );
 };
 

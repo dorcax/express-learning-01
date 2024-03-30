@@ -23,7 +23,7 @@ const Lifestyle = () => {
   }, []);
   return (
     <div>
-      <div className='md:p-24 font-["Poppins", sans-serif] sm:px-10 sm:py-12'>
+      <div className='md:p-24 font-["Poppins", sans-serif] sm:px-10 sm:py-12 max-h-screen  w-full'>
         <div>
           <h2 className="capitalize text-3xl font-serif py-3 ">
             lifestyle posts

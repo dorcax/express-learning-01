@@ -43,7 +43,7 @@ setSearch(e.target.value)
         {searchResult && searchResult.map(item => {
         return  <li key={item.id} className='text-lg'><Link to={`/blog/single/${item.id}`}>{item.title}</Link></li>
 })}
-        {/* <li>hello</li> */}
+        
       </ul>
         </div>
         </form>

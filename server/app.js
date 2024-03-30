@@ -13,7 +13,7 @@ const cors =require("cors")
 
 app.use(bodyParser.json());
 const corsOptions ={
-  origin:['http://localhost:5173',"https://designblogwebsite.netlify.app/"], 
+  origin:['http://localhost:5173',"https://designblogwebsite.netlify.app"], 
   credentials:true,            //access-control-allow-credentials:true
   optionSuccessStatus:200,
   methods: "GET, POST, PATCH,DELETE", // Allowed HTTP methods

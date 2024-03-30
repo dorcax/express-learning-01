@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState,useRef,useEffect} from "react";
 import { category, blog, more } from "../../../data/category";
 import { Link } from "react-router-dom";
 const Dropdown = () => {
@@ -10,6 +10,10 @@ const Dropdown = () => {
   const handleclicks =()=>{
     setdropdown(false)
   }
+  let menuRef =useRef()
+
+
+ 
   return (
     <div className='relative'>
       <ul className={dropdown ? 'bg-white shadow-lg w-48  text-left  capitalize top-3.5  border border-solid  font-["Poppins", sans-serif]  absolute hidden' :'bg-white shadow-md w-44  text-left  capitalize  border  border-solid  font-["Poppins", sans-serif]  absolute top-3.5 '} onClick={handleClick}>

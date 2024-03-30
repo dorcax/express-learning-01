@@ -62,7 +62,7 @@ const Login =async(FORMDATA)=>{
     UserLoad()
     localStorage.setItem("token",response.data.token)
     toast.success("user logged in")
-    navigate("/")
+    navigate("/login")
   } catch (error) {
    
     if (error.response) {
@@ -79,7 +79,9 @@ const Login =async(FORMDATA)=>{
 
 
 const logout = () => {
+  localStorage.removeItem("token")
   dispatch({ type: 'LOGOUT' });
+  toast.success("user logged out")
 };
   return (
   <AuthContext.Provider value={{

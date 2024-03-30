@@ -5,7 +5,7 @@ import Footer from '../footer/Footer'
 const Error = () => {
   return (
     <div>
-          <div className='md:p-24 font-["Poppins", sans-serif] sm:px-10 sm:py-12'>
+          <div className='md:p-24 font-["Poppins", sans-serif] sm:px-10 sm:py-12 h-max'>
       <div className='flex  md:flex-row justify-center  items-center sm:flex-col'>
         <div>
        <img src={img} alt="error image" srcset="" width={600} className='rounded-full' />

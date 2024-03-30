@@ -4,6 +4,7 @@ import useFetch from "../../customHook/featuredHook";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../footer/Footer";
 import { DarkmodeContext } from "../navbar/themeContext";
+import Pagination from "../pagination/Pagination";
 
 const Body = () => {
   const { theme, toggleTheme } = useContext(DarkmodeContext);
@@ -87,9 +88,10 @@ const Body = () => {
                   );
                 })}
             </div>
-            <button className=" border-2 border-[#4579A0]  border-solid  mx-auto text-center my-10 p-3 capitalize text-lg flex justify-center items-center text-[#4579A0] rounded-lg hover:bg-[#4579A0] hover:text-white">
+            {/* <button className=" border-2 border-[#4579A0]  border-solid  mx-auto text-center my-10 p-3 capitalize text-lg flex justify-center items-center text-[#4579A0] rounded-lg hover:bg-[#4579A0] hover:text-white">
               <Link>all featured posts</Link>
-            </button>
+            </button> */}
+            <Pagination/>
           </div>
         </div>
 
