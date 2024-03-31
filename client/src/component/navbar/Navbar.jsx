@@ -10,7 +10,7 @@ import { AuthContext } from "../Sign/Loginhandlers";
 import ModalSearch from "./ModalSearch";
 
 const Navbar = () => {
-  const { login, logout,isAuthenticated} = useContext(AuthContext);
+  const { login, logout,isAuthenticated,UserLoad,currentUser} = useContext(AuthContext);
   const { theme, toggleTheme } = useContext(DarkmodeContext);
   const [dropdown, setdropdown] = useState(false);
   const [dropdown1, setdropdown1] = useState(false);
@@ -45,20 +45,14 @@ const Navbar = () => {
     }
   })
 
-  // let barRef =useRef()
+  // fetch user
   useEffect(()=>{
-    let handler=(e)=>{
-      if(!barRef.current.contains(e.target)){
-        setdropdown(false)
-      }
-    
+    const user =async()=>{
+      await UserLoad()
 
     }
-    document.addEventListener("mousedown",handler)
-    return ()=>{
-       document.removeEventListener("mousedown",handler) 
-    }
-  })
+    user()
+  },[])
   // modal togggle
   const handleToggleModal =()=>{
     setCloseModal(!openModal)
@@ -95,7 +89,7 @@ const Navbar = () => {
                     
             className="px-4 capitalize text-lg px-4 font-light hover:font-normal "
             onClick={handleClick}
-            ref={barRef}
+          
 
           >
             categories <i className="fa-solid fa-chevron-down text-base"></i>
@@ -131,7 +125,7 @@ const Navbar = () => {
        
       </nav>
       <div className=" hidden lg:flex lg:items-center lg:flex  md:items-center  ">
-        {isAuthenticated ? (
+        {isAuthenticated && currentUser ? (
           <button
             onClick={logout}
             className="border border-solid border-[#4579A0] px-4 py-2 rounded-md capitalize text-md hover:bg-[#4579A0] hover:text-[#fff] transition ease-out duration-500  "
@@ -156,7 +150,7 @@ const Navbar = () => {
       {/* hamburger on small screen  */}
       
        <div    ref={menuRef}>
-         <div className="items-center " >
+         <div className=" lg:hidden items-center " >
           <button onClick={setToggle} className="text-2xl">{isMenuOpen?<i class="fas fa-times"></i>:<i class="fas fa-bars"></i>}</button>
         </div>
         <nav className= {isMenuOpen?"fixed left-0 top-0 w-[50%] h-screen bg-[#000] text-white ease-in-out duration-500  text-center cursor-pointer" :"fixed left-[-100%]"} ref={menuRef} >
@@ -193,16 +187,16 @@ const Navbar = () => {
             <Link to="/contact">contact</Link>
           </li>
           {/* <li> <Link to="/login">login</Link></li> */}
-          <span className="px-4 text-lg py-5 " onClick={handleToggleModal}>
+          {/* <span className="px-4 text-lg py-5 " onClick={handleToggleModal}>
             <i class="fa-solid fa-magnifying-glass"></i>
-          </span>
+          </span> */}
               
               
               
          {openModal && <ModalSearch closeMenu ={handleToggleModal}/> }
         </ul>
         <div className="flex flex-col items-center  md:py-5 sm:py-5 md:flex  items-center ">
-        {isAuthenticated ? (
+        {isAuthenticated  && currentUser? (
           <button
             onClick={logout}
             className="border border-solid border-[#4579A0] px-4 py-2 rounded-md capitalize md:text-md  sm:text-xl hover:bg-[#4579A0] hover:text-[#fff] transition ease-out duration-500  "

@@ -22,7 +22,7 @@ const Culture = () => {
   }, []);
   return (
     <div>
-      <div className='md:p-24 font-["Poppins", sans-serif] sm:px-10 sm:py-12'>
+      <div className='md:p-24 font-["Poppins", sans-serif] sm:px-10 sm:py-12 min-h-screen'>
         <div>
           <h2 className="text-3xl font-serif py-3 capitalize ">culture post</h2>
           <div className="border border-solid border-gray-400 w-full">

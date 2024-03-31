@@ -79,8 +79,8 @@ const navigate =useNavigate()
     }
   };
   return (
-    <div className='p-24 font-["Poppins", sans-serif] w-full h-screen'>
-      <div className="border border-solid  mx-auto shadow-lg p-6 sm:my-14 sm:py-10">
+    <div className='py-24 font-["Poppins", sans-serif] max-w-sm mx-auto    '>
+      <div className="border border-solid shadow-lg p-6 ">
         <form
           action=""
           className="flex flex-col justify-center items-center"
@@ -95,7 +95,7 @@ const navigate =useNavigate()
               value={FORMDATA.email}
               autoComplete="current-email"
               placeholder="email"
-              className="border-2 border-solid border-[#4579A0] md:py-4 w-80  sm:py-6 shadow-md  focus:outline-none px-2 rounded-md capitalize  md:text-lg sm:text-xl"
+              className="border-2 border-solid border-[#4579A0]  w-80  py-4 shadow-md  focus:outline-none px-2 rounded-md capitalize  text-sm"
               onChange={handleChange}
             />
           </div>
@@ -110,19 +110,19 @@ const navigate =useNavigate()
               value={FORMDATA.password}
               placeholder="password"
               autoComplete="current-password"
-              className="border-2 border-solid border-[#4579A0] md:py-4 w-80  sm:py-6 shadow-md focus:outline-none px-2 rounded-md capitalize md:text-lg sm:text-xl"
+              className="border-2 border-solid border-[#4579A0] py-4 w-80   shadow-md focus:outline-none px-2 rounded-md capitalize text-sm"
               onChange={handleChange}
             />
           </div>
           <button
             type="submit"
-            className="bg-[#4579A0] capitalize w-36 md:py-2  sm:py-4 rounded-md text-white md:text-md sm:text-2xl mt-2"
+            className="bg-[#4579A0] capitalize w-36 py-2   rounded-md text-white text-sm mt-2"
           >
             sign in
           </button>
-          <p className="md:text-sm sm:text-lg mt-2">
-            Dont have an account ?{" "}
-            <span className="text-[#4579A0] capitalize">
+          <p className="text-sm mt-2">
+            Dont have an account ?
+            <span className="text-[#4579A0] text-sm capitalize">
               <Link to="/sign">signup</Link>
             </span>
           </p>

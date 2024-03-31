@@ -51,7 +51,8 @@ const Editcomment = ({ commentId ,isEdit,onEditToggle}) => {
  
 
   return (
-    <div>
+    <div className="
+    px-4">
       <form action="" method="post" onSubmit={handleEdit}>
         <div>
           { isEdit && data && (
@@ -61,14 +62,14 @@ const Editcomment = ({ commentId ,isEdit,onEditToggle}) => {
                 value={content}
                 id=""
                 onChange={(e) => setContent(e.target.value)}
-                className="border border-solid  border-[#4579A0] w-80 sm:text-2xl sm:py-4 my-2 rounded-lg focus:outline-none sm:py-6"
+                className="border border-solid  border-[#4579A0] w-60 text-xl sm:py-4 my-2 rounded-lg focus:outline-none sm:py-6"
               />
             </div>
           )}
         </div>
 
         <button
-          className="px-3   capitalize md:text-sm py-2 sm:text-xl"
+          className="px-0 capitalize text-sm py-2 "
          
        onClick={onEditToggle}
         >
@@ -76,7 +77,7 @@ const Editcomment = ({ commentId ,isEdit,onEditToggle}) => {
           {isEdit ? "Cancel" : "Edit"}
         </button>
         {isEdit && (
-          <button type="submit" className="px-3 capitalize md:text-sm py-2 sm:text-xl">
+          <button type="submit" className="px-3 capitalize text-sm py-2 ">
             Save
           </button>
         )}

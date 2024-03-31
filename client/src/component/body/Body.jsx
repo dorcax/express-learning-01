@@ -33,7 +33,7 @@ const Body = () => {
 
   return (
     <div>
-      <div className='md:p-24 font-["Poppins", sans-serif] sm:px-10 sm:py-12'>
+      <div className='md:p-24 font-["Poppins", sans-serif] sm:px-10 sm:py-12 min-h-screen'>
         <div className=" ">
           <h2 className="capitalize text-3xl font-serif py-3 ">
             featured posts

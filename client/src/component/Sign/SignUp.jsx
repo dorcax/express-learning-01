@@ -81,8 +81,8 @@ const SignUp = () => {
     }
   };
   return (
-    <div className='p-24 font-["Poppins", sans-serif] w-full h-screen'>
-      <div className="border border-solid  mx-auto shadow-md md:p-5 sm:my-14 sm:py-10">
+    <div className='py-24 font-["Poppins", sans-serif] max-w-sm mx-auto   '>
+      <div className="border border-solid   shadow-lg  p-6 ">
       <form
         action=""
         className="flex flex-col justify-center items-center"
@@ -97,7 +97,7 @@ const SignUp = () => {
             value={state.name}
             placeholder="name"
             onChange={handleChange}
-            className="border-2 border-solid border-[#4579A0] md:py-4 sm:py-6 w-80 shadow-md focus:outline-none px-2 rounded-md capitalize md:text-lg sm:text-xl "
+            className="border-2 border-solid border-[#4579A0] py-4 w-80 shadow-md focus:outline-none px-2 rounded-md capitalize text-sm "
           />
         </div>
         <div className="my-6">
@@ -108,7 +108,7 @@ const SignUp = () => {
             id=""
             value={state.email}
             placeholder="email"
-            className="border-2 border-solid border-[#4579A0] md:py-4 sm:py-6 w-80 shadow-md focus:outline-none px-2 rounded-md capitalize md:text-lg sm:text-xl "
+            className="border-2 border-solid border-[#4579A0] py-4  w-80 shadow-md focus:outline-none px-2 rounded-md capitalize md:text-lg text-sm "
             onChange={handleChange}
           />
         </div>
@@ -122,13 +122,12 @@ const SignUp = () => {
             id=""
             value={state.password}
             placeholder="password"
-            className="border-2 border-solid border-[#4579A0] md:py-4 w-80  sm:py-6 shadow-md focus:outline-none px-2 rounded-md capitalize md:text-lg sm:text-xl"
+            className="border-2 border-solid border-[#4579A0] py-4 w-80  shadow-md focus:outline-none px-2 rounded-md capitalize text-sm"
             onChange={handleChange}
           />
         </div>
-        <button type="submit" className="bg-[#4579A0] px-6 md:py-2 sm:py-4 w-36 text-[#fff] capitalize rounded-md border border-solid mb-4 my-2 md:text-md sm:text-2xl" >signup</button>
-        <p className="
-        md:text-sm  sm:text-lg">Have an account ? <span className="text-[#4579A0]  text-md"><Link to="/login">Sign in</Link></span></p>
+        <button type="submit" className="bg-[#4579A0] px-6 py-2  text-sm w-36 text-[#fff] capitalize rounded-md border border-solid mb-4 my-2 " >signup</button>
+        <p className="text-sm ">Have an account ? <span className="text-[#4579A0] "><Link to="/login">Sign in</Link></span></p>
       </form>
       </div>
      

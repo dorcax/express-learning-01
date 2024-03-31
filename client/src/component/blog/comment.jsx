@@ -63,17 +63,17 @@ const comment = () => {
             )}
           
 
-        <div>{!isAuthenticated && <h2 className='md:text-lg sm:text-2xl text-[#4579A0] '>You must be logged in to comment.<Link to="/login">Login</Link></h2> }</div>
+        <div>{!isAuthenticated && <h2 className='md:text-lg text-xl text-center text-[#4579A0] '>You must be logged in to comment.<Link to="/login">Login</Link></h2> }</div>
         {isAuthenticated &&
         <div>
         <form action="" method="post" onSubmit={handleSubmit}>
          
-            <div className=' capitalize  md:text-lg my-3 sm:text-3xl'>   <h2>comments :</h2></div>
-             <div className='flex justify-start  sm:flex-col '>
+            <div className=' capitalize  text-lg my-3 '>   <h2>comments :</h2></div>
+             <div className='flex justify-start  flex-col lg:flex-row '>
           
-             <input type="text" name="content" id=""  value={content} onChange={(e)=>setContent(e.target.value)} className='border border-solid w-10/12 md:py-3  rounded-md focus:outline-none hover:border-[#4579A0] px-3 shadow-lg sm:py-8 sm:w-full' placeholder='write comment'/>
+             <input type="text" name="content" id=""  value={content} onChange={(e)=>setContent(e.target.value)} className='border border-solid lg:w-10/12 h-[80px]  rounded-md focus:outline-none hover:border-[#4579A0] px-3 shadow-lg  sm:w-full' placeholder='write comment'/>
  
-             <button type='submit' className='border border-solid m-2 md:p-5 capitalize text-[#fff] bg-[#4579A0] flex items-center rounded-md  sm:w-28 sm:mx-auto sm:my-8 sm:py-4 sm:justify-center sm:text-2xl'>post</button>
+             <button type='submit' className='border border-solid m-2 p-2 capitalize text-[#fff] bg-[#4579A0] flex items-center rounded-md  mx-auto sm:w-28 justify-center sm:text-2xl'>post</button>
              </div>
             
          </form>

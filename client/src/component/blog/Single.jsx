@@ -76,20 +76,20 @@ const Single = () => {
     
   return (
     <div>
-      <div className='px-24 font-["Poppins", sans-serif]'>
+      <div className='lg:px-24 font-["Poppins", sans-serif] sm:px-4 sm:py-0'>
         <div>
           {data1 &&
             data1.length > 0 &&
             data1.map((er) => {
               return (
-                <div className=" p-3 flex flex-col max-w-6xl mx-auto min-h-screen">
-                  <h2 className=" md:text-3xl  sm:text-4xl mt-10 p-3 text-center font-serif  max-w-2xl mx-auto lg:text-4xl capitalize">
+                <div className=" p-3 flex flex-col  mx-auto min-h-screen">
+                  <h2 className=" text-3xl  mt-10 p-3  text-center font-serif   mx-auto lg:text-4xl capitalize">
                     {er.title}
                   </h2>
-                  <p className="sm:text-xl text-center lowercase mb-4 border border-solid border-[#579A0] w-20 h-8 rounded-full flex items-center justify-center mx-auto  ">
+                  <p className="sm:text-xl text-center lowercase mb-4 border border-solid border-[#579A0] w-28 h-8 rounded-full flex items-center justify-center mx-auto  ">
                     {er.category}
                   </p>
-                  <div>
+                  <div className="py-8">
                     <img
                       src={er.imageUrl}
                       alt="image"
@@ -97,7 +97,7 @@ const Single = () => {
                       className="object-cover w-full"
                     />
                   </div>
-                  <div className="flex justify-between p-3 mt-4 border-b border-slate-500 mx-auto w-full max-w-5xl md:text-xl sm:text-2xl">
+                  <div className="flex justify-between p-2 border-b border-slate-500 mx-auto w-full max-w-5xl md:text-xl text-xl">
                     <p> {new Date(er.createdAt).toLocaleDateString()}</p>
                     <p className="">
                       {(er.content.length / 1000).toFixed(0)} mins read
@@ -109,7 +109,7 @@ const Single = () => {
                      {countLike} <i class="fa-solid fa-thumbs-up px-4"  ></i>
                     </div>
                   </div>
-                  <div className="md:p-3 max-w-5xl mx-auto   indent-12 break-normal leading-loose md:text-lg sm:text-3xl ">
+                  <div className="md:p-3 max-w-5xl mx-auto   indent-12 break-normal leading-loose text-lg ">
                     {er.content}
                   </div>
                   {/* <Link to={`/blog/${er.id}/comment`}>comment</Link> */}

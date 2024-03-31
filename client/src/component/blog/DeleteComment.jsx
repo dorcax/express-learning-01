@@ -35,7 +35,7 @@ const DeleteComment = ({commentId}) => {
   return (
     <div>
      
-      <button className="px-3   capitalize  md:text-sm py-2 sm:text-xl" onClick={handleDelete} >
+      <button className="px-3   capitalize  text-sm py-2 " onClick={handleDelete} >
     delete
    </button></div>
   )

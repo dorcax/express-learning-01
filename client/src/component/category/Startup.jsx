@@ -24,7 +24,7 @@ const Startup = () => {
   }, []);
   return (
     <div>
-      <div className='md:p-24 font-["Poppins", sans-serif] sm:px-10 sm:py-12'>
+      <div className='md:p-24 font-["Poppins", sans-serif] sm:px-10 sm:py-12 min-h-screen'>
         <div>
           <h2 className="py-3 text-3xl font-serif ">IT posts</h2>
           <div className="border border-solid border-gray-400 w-full">
