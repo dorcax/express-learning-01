@@ -5,13 +5,19 @@ import Getcomment from './Getcomment'
 import { AuthContext } from '../Sign/Loginhandlers'
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { DarkmodeContext } from '../context/themeContext'
+import { PostContext } from '../context/PostContext'
 
 const comment = () => {
+  
     const{blogId} =useParams()
     const[content,setContent] =useState(" ")
     const[message,setMessage] =useState(null)
     const{isAuthenticated,login} =useContext(AuthContext)
     const [error, setError] = useState([]);
+    const [loading,setLoading]=useState(false)
+    const {theme} =useContext(DarkmodeContext)
+    const{state,dispatch}=useContext(PostContext)
 
   const ValidateForm = () => {
     let valid = true;
@@ -26,6 +32,7 @@ const comment = () => {
   }
     const handleSubmit =async(e)=>{
         e.preventDefault()
+        setLoading(true)
         if(ValidateForm()){
             try {
                 const response =await axios.post(`https://blog-website-lbk2.onrender.com/blog/${blogId}/comment`,{
@@ -36,10 +43,15 @@ const comment = () => {
                   }
                 })
                 console.log("created")
-                setMessage(response.data)
+                // setMessage(response.data)
+
+                dispatch({type:"create_post",action:response.data})
+                console.log("State after dispatch:", state); // Debugging log
                 toast.success("comment has been created")
     
                 setContent("")
+                setLoading(false)
+
             } catch (error) {
             console.log(error)
             if (error.response) {
@@ -64,9 +76,14 @@ const comment = () => {
           
 
         <div>{!isAuthenticated && <h2 className='md:text-lg text-xl text-center text-[#4579A0] '>You must be logged in to comment.<Link to="/login">Login</Link></h2> }</div>
-        {isAuthenticated &&
+        {isAuthenticated && 
         <div>
-        <form action="" method="post" onSubmit={handleSubmit}>
+          
+        <form action="" method="post" onSubmit={handleSubmit}  className={`${
+        theme === "light"
+          ? 'bg-white    py-4 font-["Poppins", sans-serif]'
+          : 'bg-[#002130]     py-4 font-["Poppins", sans-serif] text-black '
+      }  `}>
          
             <div className=' capitalize  text-lg my-3 '>   <h2>comments :</h2></div>
              <div className='flex justify-start  flex-col lg:flex-row '>
@@ -77,6 +94,7 @@ const comment = () => {
              </div>
             
          </form>
+         {loading &&<div className='flex justify-center  items-center mt-4 animate-spin text-3xl '><i class="fa-solid fa-spinner"></i></div>}
         </div>
         
         }

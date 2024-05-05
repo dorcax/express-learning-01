@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { DarkmodeContext } from "../context/themeContext";
 
 const Editcomment = ({ commentId ,isEdit,onEditToggle}) => {
   const { blogId } = useParams();
   const [data, setData] = useState([]);
   const [content, setContent] = useState("");
+  const{theme} =useContext(DarkmodeContext)
   
  
 
@@ -52,17 +54,22 @@ const Editcomment = ({ commentId ,isEdit,onEditToggle}) => {
 
   return (
     <div className="
-    px-4">
-      <form action="" method="post" onSubmit={handleEdit}>
+    ">
+      <form action="" method="post" onSubmit={handleEdit}
+      >
         <div>
           { isEdit && data && (
-            <div>
+            <div  className={`${
+              theme === "light"
+                ? 'bg-white    py-4 font-["Poppins", sans-serif]'
+                : 'bg-[#002130]     py-4 font-["Poppins", sans-serif] text-black '
+            }  `}>
               <input
                 name="content"
                 value={content}
                 id=""
                 onChange={(e) => setContent(e.target.value)}
-                className="border border-solid  border-[#4579A0] w-60 text-xl sm:py-4 my-2 rounded-lg focus:outline-none sm:py-6"
+                className="border border-solid  border-[#4579A0] w-60 md:w-[600px] text-md sm:py-4 my-2 rounded-lg focus:outline-none sm:py-6"
               />
             </div>
           )}

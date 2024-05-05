@@ -2,7 +2,7 @@ import React from "react";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { ThemeContext } from "./component/navbar/themeContext";
+import { ThemeContext } from "./component/context/themeContext";
 import { AuthProvider } from "./component/Sign/Loginhandlers";
 import Body from "./component/body/Body";
 import {
@@ -26,6 +26,7 @@ import SignUp from "./component/Sign/SignUp";
 import Login from "./component/Sign/Login";
 import { Contact } from "./component/contact/Contact";
 import Comment from "./component/blog/comment";
+import { PostContextProvider } from "./component/context/PostContext";
 
 
 const App = () => {
@@ -56,10 +57,14 @@ const App = () => {
   return (
     <div>
       <AuthProvider>
+      <PostContextProvider>
         <ThemeContext>
+         
           <RouterProvider router={router} />
           <ToastContainer></ToastContainer>
+        
         </ThemeContext>
+        </PostContextProvider>
       </AuthProvider>
     </div>
   );

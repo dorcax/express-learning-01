@@ -1,7 +1,7 @@
 import React ,{useContext}from "react";
 import Navbar from "./Navbar";
 import { Outlet } from "react-router-dom";
-import { DarkmodeContext } from "./themeContext";
+import { DarkmodeContext } from "../context/themeContext";
 
 const MainNav = () => {
   const { theme, toggleTheme } = useContext(DarkmodeContext);

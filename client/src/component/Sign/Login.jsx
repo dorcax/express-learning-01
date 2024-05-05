@@ -2,6 +2,7 @@ import React, { useContext, useReducer, useState } from "react";
 import axios from "axios";
 import { Link ,useNavigate} from "react-router-dom";
 import { AuthContext } from "./Loginhandlers";
+import { DarkmodeContext } from "../context/themeContext";
 
 
 // reducer function
@@ -25,10 +26,11 @@ const reducer = (state, action) => {
 const Login = () => {
   
   const{Login,state}=useContext(AuthContext)
+  const {theme} =useContext(DarkmodeContext)
   const initialState = {
     // name: "",
     email: "",
-    password: " ",
+    password: "",
   };
   const [FORMDATA, dispatch] = useReducer(reducer, initialState);
 const navigate =useNavigate()
@@ -79,11 +81,16 @@ const navigate =useNavigate()
     }
   };
   return (
-    <div className='py-24 font-["Poppins", sans-serif] max-w-sm mx-auto    '>
-      <div className="border border-solid shadow-lg p-6 ">
+    <div className='py-24 font-["Poppins", sans-serif] max-w-sm mx-auto h-screen    '>
+      <div
+      className={`${
+        theme === "light"
+          ? 'bg-white    py-4 font-["Poppins", sans-serif]'
+          : 'bg-[#002130]     py-4 font-["Poppins", sans-serif] text-black '
+      }  border border-solid shadow-lg p-6 `}>
         <form
           action=""
-          className="flex flex-col justify-center items-center"
+          className="flex flex-col justify-center items-center  "
           onSubmit={handleSubmit}
         >
           <div className="my-6">
@@ -93,9 +100,9 @@ const navigate =useNavigate()
               name="email"
               id="email"
               value={FORMDATA.email}
-              autoComplete="current-email"
+              // autoComplete="current-email"
               placeholder="email"
-              className="border-2 border-solid border-[#4579A0]  w-80  py-4 shadow-md  focus:outline-none px-2 rounded-md capitalize  text-sm"
+              className="border-2 border-solid border-[#4579A0]  w-80  py-4 shadow-md  focus:outline-none px-2 rounded-md     text-sm"
               onChange={handleChange}
             />
           </div>
@@ -109,8 +116,9 @@ const navigate =useNavigate()
               id="password"
               value={FORMDATA.password}
               placeholder="password"
-              autoComplete="current-password"
-              className="border-2 border-solid border-[#4579A0] py-4 w-80   shadow-md focus:outline-none px-2 rounded-md capitalize text-sm"
+              autoComplete="off"
+
+              className="border-2 border-solid border-[#4579A0] py-4 w-80   shadow-md focus:outline-none px-2 rounded-md  text-sm"
               onChange={handleChange}
             />
           </div>
@@ -120,7 +128,12 @@ const navigate =useNavigate()
           >
             sign in
           </button>
-          <p className="text-sm mt-2">
+          <p 
+          className={`${
+            theme === "light"
+              ? 'bg-white    py-4 font-["Poppins", sans-serif]'
+              : 'bg-[#002130]     py-4 font-["Poppins", sans-serif] text-white '
+          }   text-sm mt-2`}>
             Dont have an account ?
             <span className="text-[#4579A0] text-sm capitalize">
               <Link to="/sign">signup</Link>

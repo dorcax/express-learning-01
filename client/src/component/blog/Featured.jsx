@@ -4,7 +4,7 @@ import axios from "axios";
 
 import { Link } from "react-router-dom";
 import Footer from "../footer/Footer";
-import { DarkmodeContext } from "../navbar/themeContext";
+import { DarkmodeContext } from "../context/themeContext";
 
 const Featured = () => {
   const { theme, toggleTheme } = useContext(DarkmodeContext);

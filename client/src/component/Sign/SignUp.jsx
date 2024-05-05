@@ -1,6 +1,7 @@
-import React, { useReducer, useState } from "react";
+import React, { useReducer, useState ,useContext} from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
+import { DarkmodeContext } from "../context/themeContext";
 
 // reducer function
 const reducer = (state, action) => {
@@ -24,9 +25,10 @@ const SignUp = () => {
   const initialState = {
     name: "",
     email: "",
-    password: " ",
+    password: "",
   };
   const [state, dispatch] = useReducer(reducer, initialState);
+  const{theme} =useContext(DarkmodeContext)
   // handleChange for input
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -62,7 +64,8 @@ const SignUp = () => {
     setError(newError);
     return valid;
   };
-
+ 
+  const navigate =useNavigate()
   // onsubmit
   const handleSubmit =async (e) => {
     e.preventDefault();
@@ -75,14 +78,21 @@ const SignUp = () => {
         });
         console.log("user successfully registered", response);
         dispatch({ type: "RESET", initialState });
+        navigate("/login")
+
       } catch (error) {
         console.log(error.response.data);
       }
     }
   };
   return (
-    <div className='py-24 font-["Poppins", sans-serif] max-w-sm mx-auto   '>
-      <div className="border border-solid   shadow-lg  p-6 ">
+    <div className='py-24 font-["Poppins", sans-serif] max-w-sm mx-auto h-screen   '>
+      <div
+          className={`${
+            theme === "light"
+              ? 'bg-white    py-4 font-["Poppins", sans-serif]'
+              : 'bg-[#002130]     py-4 font-["Poppins", sans-serif] text-black '
+          }  border border-solid shadow-lg p-6 `}>
       <form
         action=""
         className="flex flex-col justify-center items-center"
@@ -97,7 +107,7 @@ const SignUp = () => {
             value={state.name}
             placeholder="name"
             onChange={handleChange}
-            className="border-2 border-solid border-[#4579A0] py-4 w-80 shadow-md focus:outline-none px-2 rounded-md capitalize text-sm "
+            className="border-2 border-solid border-[#4579A0] py-4 w-80 shadow-md focus:outline-none px-2 rounded-md  text-sm "
           />
         </div>
         <div className="my-6">
@@ -108,7 +118,7 @@ const SignUp = () => {
             id=""
             value={state.email}
             placeholder="email"
-            className="border-2 border-solid border-[#4579A0] py-4  w-80 shadow-md focus:outline-none px-2 rounded-md capitalize md:text-lg text-sm "
+            className="border-2 border-solid border-[#4579A0] py-4  w-80 shadow-md focus:outline-none px-2 rounded-md  md:text-lg text-sm "
             onChange={handleChange}
           />
         </div>
@@ -122,12 +132,16 @@ const SignUp = () => {
             id=""
             value={state.password}
             placeholder="password"
-            className="border-2 border-solid border-[#4579A0] py-4 w-80  shadow-md focus:outline-none px-2 rounded-md capitalize text-sm"
+            className="border-2 border-solid border-[#4579A0] py-4 w-80  shadow-md focus:outline-none px-2 rounded-md  text-sm"
             onChange={handleChange}
           />
         </div>
         <button type="submit" className="bg-[#4579A0] px-6 py-2  text-sm w-36 text-[#fff] capitalize rounded-md border border-solid mb-4 my-2 " >signup</button>
-        <p className="text-sm ">Have an account ? <span className="text-[#4579A0] "><Link to="/login">Sign in</Link></span></p>
+        <p    className={`${
+        theme === "light"
+          ? 'bg-white    py-4 font-["Poppins", sans-serif]'
+          : 'bg-[#002130]     py-4 font-["Poppins", sans-serif] text-white '
+      }   text-sm`}>Have an account ? <span className="text-[#4579A0] "><Link to="/login">Sign in</Link></span></p>
       </form>
       </div>
      

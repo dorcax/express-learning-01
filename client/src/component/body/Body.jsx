@@ -3,7 +3,7 @@ import axios from "axios";
 import useFetch from "../../customHook/featuredHook";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../footer/Footer";
-import { DarkmodeContext } from "../navbar/themeContext";
+import { DarkmodeContext } from "../context/themeContext";
 import Pagination from "../pagination/Pagination";
 
 const Body = () => {

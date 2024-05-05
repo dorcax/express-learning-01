@@ -4,7 +4,7 @@ import Dropdown2 from "./dropdown/Dropdown2";
 import { category, blog, more } from "../../data/category";
 import Dropdown3 from "./dropdown/Dropdown3";
 import Darkmode from "./darkmode";
-import { DarkmodeContext } from "./themeContext";
+import { DarkmodeContext } from "../context/themeContext";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Sign/Loginhandlers";
 import ModalSearch from "./ModalSearch";

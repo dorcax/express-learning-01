@@ -2,7 +2,7 @@ import React, { useEffect, useState,useContext } from "react";
 import axios from "axios";
 import Footer from "../footer/Footer";
 import { Link } from "react-router-dom";
-import { DarkmodeContext } from "../navbar/themeContext";
+import { DarkmodeContext } from "../context/themeContext";
 
 const Lifestyle = () => {
   const { theme, toggleTheme } = useContext(DarkmodeContext);
