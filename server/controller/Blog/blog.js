@@ -161,7 +161,7 @@ module.exports.getComment = asyncWrapper(async (req, res, next) => {
       createCustomError("can't find user with that particular id", 404)
     );
   }
-  res.status(200).json(getComment);
+  res.status(200).json({content:getComment});
 });
 module.exports.OneComment =asyncWrapper(async(req,res,next)=>{
   const{blogId,commentId}=req.params
